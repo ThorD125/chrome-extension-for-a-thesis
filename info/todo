@@ -1,0 +1,10 @@
+test extension op chromium based browsers
+check ssl certificate - check if subdomains - check if valid ssl
+file upload
+sql injection
+csrf
+if any parameter with / then check for lfi
+idor
+
+rce
+abuse eval function to check if code is valid or in xss
