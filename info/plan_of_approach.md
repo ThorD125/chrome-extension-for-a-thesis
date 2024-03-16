@@ -1,8 +1,8 @@
 # plan of approach
 
-01. figure out how an extension works
-02. what extensions all can do
-03. find out how to make an extension
+01. figure out how an extension works   - done
+02. what extensions all can do          - done
+03. find out how to make an extension   - done
     repeat the next ones
 04. find an exploit
 05. figure out how to automate it
