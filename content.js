@@ -1,5 +1,6 @@
 console.log("content.js loaded");
 
+// LINKS POSTMESSAGE https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205
 // let native_alert = alert;
 
 // alert = function (msg) {
