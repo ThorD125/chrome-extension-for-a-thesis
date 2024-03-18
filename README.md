@@ -24,8 +24,8 @@ This repository contains a Chrome extension that facilitates the demonstration a
 |--------------------|--------------|-------------|---------|
 | post_formbody_attack | [Exploit Link](https://portswigger.net/web-security/xxe/lab-xinclude-attack) | This exploit demonstrates an XXE (XML External Entity) attack by exploiting vulnerabilities in the `post_formbody_attack` scenario. | ✅ |
 | post_xmlbody_attack | [Exploit Link](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files) | This exploit showcases the exploitation of XXE to retrieve files by targeting the `post_xmlbody_attack` scenario. | ✅ |
-| postmessage_exploit | [Exploit Link](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205) | This exploit demonstrates the exploitation of postMessage vulnerabilities. | ❌ (Not yet working) |
-| blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages) | This exploit aims to demonstrate blind XXE with data retrieval via error messages. | ❌ (Not yet working) |
+| postmessage_exploit | [Exploit Link](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205) | This exploit demonstrates the exploitation of postMessage vulnerabilities. | 🟡 Pending |
+| blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages) | This exploit aims to demonstrate blind XXE with data retrieval via error messages. | 🟡 Pending |
 
 ## Usage
 
@@ -38,6 +38,21 @@ For now, you can visit websites and freely explore their features. If the extens
 3. Select "Inspect views" and then choose "Service Worker".
 
 4. Here, you can monitor the activity and results of the extension's actions when it detects potential exploits.
+
+## TODO'S
+
+| TODO Item                                           | Status   |
+|----------------------------------------------------|----------|
+| Identifying requests                               | ✅ Done     |
+| Identifying exploits                               | ✅ Done     |
+| Adding more exploits                               | ✅ Done     |
+| Adding multiple payloads                           | ✅ Done     |
+| Returning results                                  | ✅ Done     |
+| Performing attacks                                 | ✅ Done     |
+| List of exploits                                   | 🟡 Pending  |
+| Default files when exploitable                     | 🟡 Pending  |
+| Adding settings                                    | 🟡 Pending  |
+| Notifing when exploit detection                    | 🟡 Pending  |
 
 ## Disclaimer
 
