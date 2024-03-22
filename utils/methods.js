@@ -1,8 +1,11 @@
-export function setup_response(request, results, payload) {
+export async function setup_response(request, results) {
+  // console.log(results);
   let response = {
-    ...request,
+    method: request.method,
+    url: request.url,
+
+    // results: theResult,
     results: results,
-    payload: payload,
   };
   delete response.fullrequest;
   chrome.runtime.sendMessage(response);
