@@ -4,3 +4,5 @@ export const blocklist = [
   "https://chat.openai.com",
   "https://www.netflix.com",
 ];
+
+export const interestingFiles = ["etc/passwd", "etc/shadow", "etc/hosts"];

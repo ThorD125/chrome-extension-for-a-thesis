@@ -54,6 +54,18 @@ For now, you can visit websites and freely explore their features. If the extens
 | Adding settings                                    | 🟡 Pending  |
 | Notifing when exploit detection                    | 🟡 Pending  |
 
+## Files Explained
+
+- **manifest.json**: This file acts as the backbone of a Chrome extension. It configures the extension, declaring its major components, and requests the necessary permissions to function properly.
+
+- **background.js**: Think of this as the JavaScript powering the entire browser's extension environment. While it can't interact directly with the content of each tab, it can handle different kinds of requests and manage broader extension activities.
+
+- **offscreen.html**: This HTML file exists within the same operational context as a browser tab but remains invisible to the user. It's a hidden layer where certain extension processes can run in the background.
+
+- **listener.js**: Associated with offscreen.html, this JavaScript file is dedicated to monitoring specific events or "attacks" in the extension's hidden realm. It's where we listen for and respond to various triggers.
+
+- **content.js**: This script runs in the context of each browser tab, directly interacting with the web content. It's isolated to the tab it operates in, ensuring that its actions are tab-specific and do not interfere with the broader browser or other tabs.
+
 ## Disclaimer
 
 This Chrome extension and associated exploits are intended for educational and testing purposes only. Do not use these exploits on any system or website without proper authorization. The developers and contributors of this repository are not responsible for any misuse or damage caused by the misuse of these exploits. Always ensure that you have appropriate permissions before conducting any security testing.

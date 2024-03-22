@@ -1,4 +1,5 @@
 import setup_attack from "./exploits/setup_attack.js";
+import { exploitelse } from "./exploits/exploitelse.js";
 // import {
 //   addBadgesToTabs,
 //   getBadgeTextForTab,
@@ -48,23 +49,28 @@ chrome.webRequest.onBeforeRequest.addListener(
       method: networkrequest.method,
     };
 
-    if (request.method == "POST" && thepayload.includes("<?xml")) {
-      // WORKING
-      setup_attack(request, "post_xmlbody_attack");
-    } else if (
-      request.method == "POST" &&
-      request.fullrequest.requestBody.formData != undefined
-    ) {
-      // WORKING
-      setup_attack(request, "post_formbody_attack");
-      //  } else if (
-      //  request.method == "GET" &&
+    if (request.method == "POST") {
+      if (thepayload.includes("<?xml")) {
+        // WORKING
+        setup_attack(request, "post_xmlbody_attack");
+      }
+      if (request.fullrequest.requestBody.formData != undefined) {
+        // WORKING
+        setup_attack(request, "post_formbody_attack");
+      }
+    } else if (request.method == "GET") {
+      if (request.url.includes("?")) {
+        setup_attack(request, "get_filepath");
+      }
+      //   if (
       //  request.url.includes("?") &&
       //  notXss(request.url)
       //  ) {
-      //  exploitxss(request);
-      // } else {
+      // else {
       //   exploitelse(request);
+      // }
+    } else {
+      exploitelse(request);
     }
   },
   { urls: ["<all_urls>"] },
