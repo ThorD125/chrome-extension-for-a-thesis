@@ -1,5 +1,8 @@
-import setup_attack from "./exploits/setup_attack.js";
+import setup_attack from "./setup/attack.js";
+import setupGatheringResponse from "./setup/gatheringResponse.js";
+
 import { exploitelse } from "./exploits/exploitelse.js";
+
 // import {
 //   addBadgesToTabs,
 //   getBadgeTextForTab,
@@ -56,13 +59,13 @@ chrome.webRequest.onBeforeRequest.addListener(
       if (request.fullrequest.requestBody.formData != undefined) {
         // WORKING
         setup_attack(request, "post_formbody_attack");
-        console.log(request);
+
         setup_attack(request, "post_command_injection");
       }
     } else if (request.method == "GET") {
       if (request.url.includes("?")) {
         // WORKING TODO add working to readme
-        // setup_attack(request, "get_filepath");
+        setup_attack(request, "get_filepath");
       }
       //   if (
       //  request.url.includes("?") &&
@@ -107,8 +110,4 @@ chrome.offscreen.createDocument({
 // chrome.browserAction.setBadgeBackgroundColor({ color: "#ff0000" });
 // };
 
-const onMessage = (result) => {
-  console.log("results", result);
-  // chrome.runtime.onMessage.removeListener(onDone);
-};
-chrome.runtime.onMessage.addListener(onMessage);
+setupGatheringResponse();
