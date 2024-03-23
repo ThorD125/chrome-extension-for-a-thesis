@@ -8,7 +8,11 @@ export default async function setupGatheringResponse() {
       if (50 < x.result.length) {
         return true;
       } else {
-        if (x.result.includes("Invalid") || x.result.includes("Syntax error")) {
+        if (
+          x.result.includes("Invalid") ||
+          x.result.includes("Syntax error") ||
+          x.result.includes("No such file")
+        ) {
           return false;
         }
         // console.log("short results", x);
@@ -16,7 +20,7 @@ export default async function setupGatheringResponse() {
       }
     });
     if (theresults.length !== 0) {
-      const stuff = { ...result, theresults };
+      const stuff = { ...result, results: theresults };
       console.log("results", stuff);
     }
   };
