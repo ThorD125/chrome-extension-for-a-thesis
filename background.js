@@ -48,7 +48,6 @@ chrome.webRequest.onBeforeRequest.addListener(
       url: networkrequest.url,
       method: networkrequest.method,
     };
-
     if (request.method == "POST") {
       if (thepayload.includes("<?xml")) {
         // WORKING
@@ -57,6 +56,8 @@ chrome.webRequest.onBeforeRequest.addListener(
       if (request.fullrequest.requestBody.formData != undefined) {
         // WORKING
         setup_attack(request, "post_formbody_attack");
+        console.log(request);
+        setup_attack(request, "post_command_injection");
       }
     } else if (request.method == "GET") {
       if (request.url.includes("?")) {
@@ -105,3 +106,9 @@ chrome.offscreen.createDocument({
 // });
 // chrome.browserAction.setBadgeBackgroundColor({ color: "#ff0000" });
 // };
+
+const onMessage = (result) => {
+  console.log("results", result);
+  // chrome.runtime.onMessage.removeListener(onDone);
+};
+chrome.runtime.onMessage.addListener(onMessage);
