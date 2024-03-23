@@ -8,5 +8,6 @@ export async function setup_response(request, results) {
     results: results,
   };
   delete response.fullrequest;
+
   chrome.runtime.sendMessage(response);
 }

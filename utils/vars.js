@@ -6,3 +6,5 @@ export const blocklist = [
 ];
 
 export const interestingFiles = ["etc/passwd", "etc/shadow", "etc/hosts"];
+
+export const defaultCommands = ["whoami", "ls", "pwd", "cat /etc/passwd"];
