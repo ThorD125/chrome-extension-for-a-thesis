@@ -35,7 +35,7 @@ chrome.webRequest.onBeforeRequest.addListener(
       return;
     }
     // console.log("shite", networkrequest);
-    console.log(networkrequest);
+    // console.log(networkrequest);
 
     let thepayload = "";
     try {

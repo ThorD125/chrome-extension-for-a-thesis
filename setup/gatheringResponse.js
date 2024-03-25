@@ -1,4 +1,4 @@
-import { appendToObjectList } from "../utils/database.js";
+import { appendToObjectList, addToTabManager } from "../utils/database.js";
 import { includesAnyOfList } from "../utils/helpers.js";
 import { fileContentIgnoreList } from "../utils/vars.js";
 
@@ -15,16 +15,18 @@ export default async function setupGatheringResponse() {
         if (includesAnyOfList(x.result, fileContentIgnoreList)) {
           return false;
         }
-        // console.log("short results", x);
+        // console.log("short results", x );
         return true;
       }
     });
     if (theresults.length !== 0) {
       const stuff = { ...result, results: theresults };
 
-      // const myObject = { id: "tabid", result: stuff };
-
       appendToObjectList({ id: "tabid", title: "anewtitle" }, stuff)
+        .then((response) => console.log(response))
+        .catch((error) => console.error(error));
+
+      addToTabManager("atabid", theresults.length)
         .then((response) => console.log(response))
         .catch((error) => console.error(error));
 
