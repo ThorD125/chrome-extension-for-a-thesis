@@ -91,26 +91,4 @@ chrome.offscreen.createDocument({
   justification: "reason for needing the document",
 });
 
-// addBadgesToTabs();
-
-// setTimeout(async () => {
-//   await getBadgeTextForTab(1421358641).then((e) => console.log(e));
-// }, 1000);
-
-// let currenttab = 0;
-
-// onTabActivation((tabId) => {
-//   currenttab = tabId;
-//   console.log("current tab", currenttab);
-// });
-
-// let tabCounters = 0;
-// const updateBadge = (tabCounters) => {
-// tabCounters += 1;
-// chrome.browserAction.setBadgeText({
-//   text: tabCounters.toString(),
-// });
-// chrome.browserAction.setBadgeBackgroundColor({ color: "#ff0000" });
-// };
-
 setupGatheringResponse();

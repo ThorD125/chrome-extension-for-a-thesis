@@ -18,10 +18,10 @@ export function openDatabase() {
   });
 }
 
-export async function readFromDatabase(key) {
+export async function readFromDatabase(table, key) {
   const db = await openDatabase();
-  const transaction = db.transaction(["attackingDatabase"], "readonly");
-  const store = transaction.objectStore("attackingDatabase");
+  const transaction = db.transaction([table], "readonly");
+  const store = transaction.objectStore(table);
   return new Promise((resolve, reject) => {
     const request = store.get(key);
     request.onsuccess = () => resolve(request.result);

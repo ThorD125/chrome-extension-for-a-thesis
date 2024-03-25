@@ -1,6 +1,13 @@
-import { appendToObjectList, addToTabManager } from "../utils/database.js";
+import {
+  appendToObjectList,
+  addToTabManager,
+  readFromDatabase,
+} from "../utils/database.js";
 import { includesAnyOfList } from "../utils/helpers.js";
 import { fileContentIgnoreList } from "../utils/vars.js";
+
+import { getCurrentTabId, getTabTitleById } from "../utils/tabmanager.js";
+import { setBadgeColor, setBadgeTextForTab } from "../utils/tabmanager.js";
 
 export default async function setupGatheringResponse() {
   const onMessage = (result) => {
@@ -22,15 +29,25 @@ export default async function setupGatheringResponse() {
     if (theresults.length !== 0) {
       const stuff = { ...result, results: theresults };
 
-      appendToObjectList({ id: "tabid", title: "anewtitle" }, stuff)
-        .then((response) => console.log(response))
-        .catch((error) => console.error(error));
+      getCurrentTabId().then((tabId) => {
+        getTabTitleById(tabId).then((tabTitle) => {
+          setBadgeColor(tabId, "red");
 
-      addToTabManager("atabid", theresults.length)
-        .then((response) => console.log(response))
-        .catch((error) => console.error(error));
+          appendToObjectList({ id: tabId, title: tabTitle }, stuff)
+            .then((response) => console.log(response))
+            .catch((error) => console.error(error));
 
-      console.log("resultstuff", stuff);
+          addToTabManager(tabId, theresults.length)
+            .then((response) => console.log(response))
+            .catch((error) => console.error(error));
+
+          readFromDatabase("tabManager", tabId)
+            .then((data) => setBadgeTextForTab(tabId, data.count))
+            .catch((error) => console.error(error));
+
+          console.log("resultstuff", stuff);
+        });
+      });
     }
   };
   chrome.runtime.onMessage.addListener(onMessage);

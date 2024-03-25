@@ -5,7 +5,7 @@ console.log("popup.js");
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("DOMContentLoaded");
-  readFromDatabase("tabid")
+  readFromDatabase("attackingDatabase", "tabid")
     .then((data) => populizePopup(data))
     .catch((error) => console.error(error));
 });
