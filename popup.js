@@ -1,6 +1,6 @@
 console.log("popup.js");
 
-readFromDatabase("tabid")
+readFromDatabase("user123")
   .then((data) => console.log(data))
   .catch((error) => console.error(error));
 
