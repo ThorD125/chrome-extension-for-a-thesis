@@ -62,9 +62,13 @@ function populizePopup(data) {
       // Add the button to the buttonContainer
       buttonContainer.appendChild(button);
 
-      document.getElementById(
-        "content"
-      ).innerHTML += `<h2>result:</h2><pre>${result.result}</pre><br>`;
+      document
+        .getElementById("content")
+        .appendChild(
+          createNodeFromString(
+            `<h2>result:</h2><pre>${result.result}</pre><br>`
+          )
+        );
     });
   });
 }
@@ -88,8 +92,8 @@ function openDatabase() {
 
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains("myStore")) {
-        db.createObjectStore("myStore", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("attackingDatabase")) {
+        db.createObjectStore("attackingDatabase", { keyPath: "id" });
       }
     };
 
@@ -105,8 +109,8 @@ function openDatabase() {
 
 async function readFromDatabase(key) {
   const db = await openDatabase();
-  const transaction = db.transaction(["myStore"], "readonly");
-  const store = transaction.objectStore("myStore");
+  const transaction = db.transaction(["attackingDatabase"], "readonly");
+  const store = transaction.objectStore("attackingDatabase");
   return new Promise((resolve, reject) => {
     const request = store.get(key);
     request.onsuccess = () => resolve(request.result);

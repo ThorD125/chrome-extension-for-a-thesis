@@ -4,8 +4,8 @@ export default function openDatabase() {
 
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains("myStore")) {
-        db.createObjectStore("myStore", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("attackingDatabase")) {
+        db.createObjectStore("attackingDatabase", { keyPath: "id" });
       }
     };
 
@@ -21,8 +21,8 @@ export default function openDatabase() {
 
 export async function writeToDatabase(obj) {
   const db = await openDatabase();
-  const transaction = db.transaction(["myStore"], "readwrite");
-  const store = transaction.objectStore("myStore");
+  const transaction = db.transaction(["attackingDatabase"], "readwrite");
+  const store = transaction.objectStore("attackingDatabase");
   return new Promise((resolve, reject) => {
     const request = store.put(obj); // Using `put` to add or update an object
     request.onsuccess = () => resolve("Data saved successfully.");
@@ -32,8 +32,8 @@ export async function writeToDatabase(obj) {
 
 export async function readFromDatabase(key) {
   const db = await openDatabase();
-  const transaction = db.transaction(["myStore"], "readonly");
-  const store = transaction.objectStore("myStore");
+  const transaction = db.transaction(["attackingDatabase"], "readonly");
+  const store = transaction.objectStore("attackingDatabase");
   return new Promise((resolve, reject) => {
     const request = store.get(key);
     request.onsuccess = () => resolve(request.result);

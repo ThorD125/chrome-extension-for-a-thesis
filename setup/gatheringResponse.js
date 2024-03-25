@@ -41,8 +41,8 @@ function openDatabase() {
 
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
-      if (!db.objectStoreNames.contains("myStore")) {
-        db.createObjectStore("myStore", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("attackingDatabase")) {
+        db.createObjectStore("attackingDatabase", { keyPath: "id" });
       }
     };
 
@@ -58,8 +58,8 @@ function openDatabase() {
 
 async function appendToObjectList(identifier, newObj) {
   const db = await openDatabase();
-  const transaction = db.transaction(["myStore"], "readwrite");
-  const store = transaction.objectStore("myStore");
+  const transaction = db.transaction(["attackingDatabase"], "readwrite");
+  const store = transaction.objectStore("attackingDatabase");
   return new Promise((resolve, reject) => {
     const request = store.get(identifier.id);
     request.onsuccess = () => {
