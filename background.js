@@ -2,6 +2,8 @@ import setup_attack from "./setup/attack.js";
 import setupGatheringResponse from "./setup/gatheringResponse.js";
 
 import { exploitelse } from "./exploits/exploitelse.js";
+import { urlIgnoreList } from "./utils/vars.js";
+import { includesAnyOfList } from "./utils/helpers.js";
 
 // import {
 //   addBadgesToTabs,
@@ -27,13 +29,13 @@ chrome.webRequest.onBeforeRequest.addListener(
     // console.log("onBeforeRequest");
 
     if (
-      typeof networkrequest.initiator != "undefined" &&
-      networkrequest.initiator.includes("chrome-extension://")
+      typeof networkrequest.initiator == "undefined" ||
+      includesAnyOfList(networkrequest.initiator, urlIgnoreList)
     ) {
       return;
     }
     // console.log("shite", networkrequest);
-    // console.log(networkrequest);
+    console.log(networkrequest);
 
     let thepayload = "";
     try {

@@ -4,7 +4,8 @@ import { populizePopup } from "./utils/helpers.js";
 console.log("popup.js");
 
 document.addEventListener("DOMContentLoaded", function () {
-  readFromDatabase("user123")
+  console.log("DOMContentLoaded");
+  readFromDatabase("tabid")
     .then((data) => populizePopup(data))
     .catch((error) => console.error(error));
 });

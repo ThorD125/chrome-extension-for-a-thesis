@@ -1,4 +1,6 @@
 import { appendToObjectList } from "../utils/database.js";
+import { includesAnyOfList } from "../utils/helpers.js";
+import { fileContentIgnoreList } from "../utils/vars.js";
 
 export default async function setupGatheringResponse() {
   const onMessage = (result) => {
@@ -10,12 +12,7 @@ export default async function setupGatheringResponse() {
       if (50 < x.result.length) {
         return true;
       } else {
-        if (
-          x.result.includes("Invalid") ||
-          x.result.includes("Syntax error") ||
-          x.result.includes("No such file") ||
-          x.result.includes("Bad Request")
-        ) {
+        if (includesAnyOfList(x.result, fileContentIgnoreList)) {
           return false;
         }
         // console.log("short results", x);
@@ -27,7 +24,7 @@ export default async function setupGatheringResponse() {
 
       // const myObject = { id: "tabid", result: stuff };
 
-      appendToObjectList({ id: "user123", title: "anewtitle" }, stuff)
+      appendToObjectList({ id: "tabid", title: "anewtitle" }, stuff)
         .then((response) => console.log(response))
         .catch((error) => console.error(error));
 

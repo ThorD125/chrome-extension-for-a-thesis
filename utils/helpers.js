@@ -48,7 +48,7 @@ export function populizePopup(data) {
   document.querySelector("h1").innerText = data.title;
   document.querySelector(".tab").innerText = data.id;
 
-  console.log(data.attacks);
+  // console.log(data.attacks);
   data.attacks.forEach((attack) => {
     document
       .getElementById("content")
@@ -88,4 +88,8 @@ export function copyButton() {
     .catch((err) => {
       console.error("Failed to copy text: ", err);
     });
+}
+
+export function includesAnyOfList(item, list) {
+  return list.some((listItem) => item.includes(listItem));
 }
