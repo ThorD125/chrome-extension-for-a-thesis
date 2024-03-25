@@ -3,6 +3,7 @@ export const blocklist = [
   "https://www.google.com",
   "https://chat.openai.com",
   "https://www.netflix.com",
+  "https://portswigger.net/academy/labs/launch",
 ];
 
 export const interestingFiles = ["etc/passwd", "etc/shadow", "etc/hosts"];

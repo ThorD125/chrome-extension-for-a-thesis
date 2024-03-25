@@ -60,6 +60,7 @@ chrome.webRequest.onBeforeRequest.addListener(
         // WORKING
         setup_attack(request, "post_formbody_attack");
 
+        // WORKING TODO add working to readme
         setup_attack(request, "post_command_injection");
       }
     } else if (request.method == "GET") {
