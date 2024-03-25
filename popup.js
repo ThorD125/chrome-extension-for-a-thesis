@@ -12,7 +12,7 @@ function createNewButton(data) {
 
   button.onclick = function () {
     console.log("Button clicked");
-    // Copy the button's text to the clipboard
+
     navigator.clipboard
       .writeText(data)
       .then(() => {
@@ -27,8 +27,29 @@ function createNewButton(data) {
 function createNodeFromString(htmlString) {
   const div = document.createElement("div");
   div.innerHTML = htmlString.trim();
-  return div.firstChild; // This will return the <p> node with replaced content
+  return div.firstChild;
 }
+function appendResultToContent(resultText) {
+  // Assume resultText is what you previously referred to as result.result
+  const content = document.getElementById("content");
+
+  // Create the h2 element and set its text
+  const h2 = document.createElement("h2");
+  h2.textContent = "result:";
+
+  // Create the pre element and set its text
+  const pre = document.createElement("pre");
+  pre.textContent = resultText;
+
+  // Append the h2 and pre elements to the content
+  content.appendChild(h2);
+  content.appendChild(pre);
+
+  // If you want a break after, you can create and append it too
+  const br = document.createElement("br");
+  content.appendChild(br);
+}
+
 function populizePopup(data) {
   document.querySelector("h1").innerText = data.title;
   document.querySelector(".tab").innerText = data.id;
@@ -42,13 +63,10 @@ function populizePopup(data) {
     attack.results.forEach((result) => {
       const buttonContainer = document.getElementById("content");
 
-      // Create a new button
       const button = document.createElement("button");
       button.textContent = "Copy";
 
-      // Add an event listener to the button
       button.addEventListener("click", function () {
-        // Copy the button's text to the clipboard
         navigator.clipboard
           .writeText(result.fetch)
           .then(() => {
@@ -59,23 +77,15 @@ function populizePopup(data) {
           });
       });
 
-      // Add the button to the buttonContainer
       buttonContainer.appendChild(button);
-
-      document
-        .getElementById("content")
-        .appendChild(
-          createNodeFromString(
-            `<h2>result:</h2><pre>${result.result}</pre><br>`
-          )
-        );
+      appendResultToContent(result.result);
     });
   });
 }
 
 function copyButton() {
   console.log("Button clicked");
-  // Copy the button's text to the clipboard
+
   navigator.clipboard
     .writeText(this.getAttribute("toCopy"))
     .then(() => {
