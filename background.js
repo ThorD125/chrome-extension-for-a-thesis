@@ -64,7 +64,7 @@ chrome.webRequest.onBeforeRequest.addListener(
       }
     } else if (request.method == "GET") {
       if (request.url.includes("?")) {
-        // WORKING TODO add working to readme
+        // WORKING
         setup_attack(request, "get_filepath");
       }
       //   if (

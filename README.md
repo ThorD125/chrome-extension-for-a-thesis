@@ -26,6 +26,7 @@ This repository contains a Chrome extension that facilitates the demonstration a
 | post_xmlbody_attack | [Exploit Link](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files) | This exploit showcases the exploitation of XXE to retrieve files by targeting the `post_xmlbody_attack` scenario. | ✅ |
 | postmessage_exploit | [Exploit Link](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205) | This exploit demonstrates the exploitation of postMessage vulnerabilities. | 🟡 Pending |
 | blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages) | This exploit aims to demonstrate blind XXE with data retrieval via error messages. | 🟡 Pending |
+| get_filepath | TODO <https://portswigger.net/web-security/file-path-traversal>|||
 
 ## Usage
 
@@ -41,18 +42,18 @@ For now, you can visit websites and freely explore their features. If the extens
 
 ## TODO'S
 
-| TODO Item                                           | Status   |
-|----------------------------------------------------|----------|
+| TODO Item                                          | Status      |
+|----------------------------------------------------|-------------|
 | Identifying requests                               | ✅ Done     |
 | Identifying exploits                               | ✅ Done     |
 | Adding more exploits                               | ✅ Done     |
 | Adding multiple payloads                           | ✅ Done     |
 | Returning results                                  | ✅ Done     |
 | Performing attacks                                 | ✅ Done     |
-| List of exploits                                   | 🟡 Pending  |
-| Default files when exploitable                     | 🟡 Pending  |
+| List of exploits                                   | ✅ Pending  |
+| Default files when exploitable                     | ✅ Pending  |
 | Adding settings                                    | 🟡 Pending  |
-| Notifing when exploit detection                    | 🟡 Pending  |
+| Notifing badge icon when exploit worked            | 🟡 Pending  |
 
 ## Files Explained
 
