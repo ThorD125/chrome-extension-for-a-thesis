@@ -1,4 +1,4 @@
-export default function openDatabase() {
+export function openDatabase() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("myDatabase", 1);
 
@@ -16,17 +16,6 @@ export default function openDatabase() {
     request.onsuccess = function (event) {
       resolve(event.target.result);
     };
-  });
-}
-
-export async function writeToDatabase(obj) {
-  const db = await openDatabase();
-  const transaction = db.transaction(["attackingDatabase"], "readwrite");
-  const store = transaction.objectStore("attackingDatabase");
-  return new Promise((resolve, reject) => {
-    const request = store.put(obj); // Using `put` to add or update an object
-    request.onsuccess = () => resolve("Data saved successfully.");
-    request.onerror = () => reject("Error saving data.");
   });
 }
 
