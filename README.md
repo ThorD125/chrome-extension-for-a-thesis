@@ -70,3 +70,14 @@ For now, you can visit websites and freely explore their features. If the extens
 ## Disclaimer
 
 This Chrome extension and associated exploits are intended for educational and testing purposes only. Do not use these exploits on any system or website without proper authorization. The developers and contributors of this repository are not responsible for any misuse or damage caused by the misuse of these exploits. Always ensure that you have appropriate permissions before conducting any security testing.
+
+## Sources
+
+“All labs | Web Security Academy.” <https://portswigger.net/web-security/all-labs>
+“API reference,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/reference/api>
+“Chat GPT.” <https://chat.openai.com/auth/login>
+A. Leybourne, “Chrome Extension Icon Generator.” <https://alexleybourne.github.io/chrome-extension-icon-generator/>
+“Extensions / Manifest v3 | Chrome for Developers,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3>
+Scribbr, “Free Citation Generator | APA, MLA, Chicago | Scribbr,” Scribbr, Mar. 21, 2024. <https://www.scribbr.com/citation/generator>
+“People of Twitter.” <https://twitter.com/home>
+“Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
