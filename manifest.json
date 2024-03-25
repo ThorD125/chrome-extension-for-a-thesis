@@ -29,7 +29,8 @@
         "webNavigation",
         "webRequest",
         "offscreen",
-        "commands"
+        "commands",
+        "unlimitedStorage"
     ],
     "host_permissions": [
         "<all_urls>"
