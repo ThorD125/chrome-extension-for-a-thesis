@@ -7,7 +7,11 @@ import { includesAnyOfList } from "../utils/helpers.js";
 import { fileContentIgnoreList } from "../utils/vars.js";
 
 import { getCurrentTabId, getTabTitleById } from "../utils/tabmanager.js";
-import { setBadgeColor, setBadgeTextForTab } from "../utils/tabmanager.js";
+import {
+  setBadgeColor,
+  setBadgeTextForTab,
+  updateBadge,
+} from "../utils/tabmanager.js";
 
 export default async function setupGatheringResponse() {
   const onMessage = (result) => {
@@ -31,19 +35,15 @@ export default async function setupGatheringResponse() {
 
       getCurrentTabId().then((tabId) => {
         getTabTitleById(tabId).then((tabTitle) => {
-          setBadgeColor(tabId, "red");
-
           appendToObjectList({ id: tabId, title: tabTitle }, stuff)
-            .then((response) => console.log(response))
+            // .then((response) => console.log(response))
             .catch((error) => console.error(error));
 
           addToTabManager(tabId, theresults.length)
-            .then((response) => console.log(response))
+            // .then((response) => console.log(response))
             .catch((error) => console.error(error));
 
-          readFromDatabase("tabManager", tabId)
-            .then((data) => setBadgeTextForTab(tabId, data.count))
-            .catch((error) => console.error(error));
+          updateBadge(tabId);
 
           console.log("resultstuff", stuff);
         });

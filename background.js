@@ -5,12 +5,6 @@ import { exploitelse } from "./exploits/exploitelse.js";
 import { urlIgnoreList } from "./utils/vars.js";
 import { includesAnyOfList } from "./utils/helpers.js";
 
-// import {
-//   addBadgesToTabs,
-//   getBadgeTextForTab,
-//   onTabActivation,
-// } from "./utils/tabmanager.js";
-
 console.log(
   "this is a script that runs in the background not in the main console."
 );
