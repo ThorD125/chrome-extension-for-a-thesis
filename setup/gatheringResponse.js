@@ -11,7 +11,8 @@ export default async function setupGatheringResponse() {
         if (
           x.result.includes("Invalid") ||
           x.result.includes("Syntax error") ||
-          x.result.includes("No such file")
+          x.result.includes("No such file") ||
+          x.result.includes("Bad Request")
         ) {
           return false;
         }

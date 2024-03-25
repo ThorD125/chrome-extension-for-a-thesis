@@ -1,11 +1,10 @@
-export async function setup_response(request, results) {
+export async function setup_response(request, results, attackType) {
   // console.log(results);
   let response = {
     method: request.method,
     url: request.url,
-
-    // results: theResult,
     results: results,
+    attackType: attackType,
   };
   delete response.fullrequest;
 
