@@ -1,66 +1,58 @@
 console.log("content.js loaded");
 
 // LINKS POSTMESSAGE https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205
-// let native_alert = alert;
+// https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages
 
-// alert = function (msg) {
-//   console.log("call to alert() - message: " + msg);
-//   // native_alert(msg);
-// };
+function checkPostMessage(url) {
+  console.log("Checking postMessage for " + url);
+}
 
-// alert("intercepted!");
-// function containsPostMessage(string) {
-//   if (
-//     string
-//       .replace(/\s+|\n+|\t+/g, "")
-//       .trim()
-//       .includes('.addEventListener("message",')
-//   ) {
-//     console.log("contains post message");
-//   }
-// }
+function checkListeners(script, url) {
+  const listeners = getListeners(script);
 
-// window.onload = function () {
-//   console.log("this script runs on every page load.");
+  if (listeners) {
+    console.log(`${url} contains events: (${listeners})`);
 
-//   let url = document.location.href;
-//   console.log(url);
+    if (listeners.includes("message")) {
+      checkPostMessage(url);
+    }
+  }
+}
 
-//   document.querySelectorAll("script:not([src])").forEach(function (scriptTxt) {
-//     containsPostMessage(scriptTxt.text);
-//   });
+function getListeners(script) {
+  const matches = script
+    .replace(/\s+|\n+|\t+/g, " ")
+    .trim()
+    .match(/addEventListener\((['"]).*?\1/g);
 
-//   let scriptElements = document.querySelectorAll("script[src]");
-//   scriptElements.forEach(function (scriptTag) {
-//     let srcAttribute = scriptTag.getAttribute("src");
-//     fetch(srcAttribute)
-//       .then((scriptSrc) => scriptSrc.text())
-//       .then(function (scriptTxt) {
-//         containsPostMessage(scriptTxt);
-//       });
-//   });
-// };
+  if (matches) {
+    return matches.map((x) =>
+      x.replace(/addEventListener\((['"])/g, "").slice(0, -1)
+    );
+  }
+  return;
+}
 
-// const getTabTextsFromLocalStorage = () => {
-//   let tabtextsinmethod = {};
-//   chrome.storage.local.get(["tabtexts"], function (result) {
-//     console.log("Value currently is " + result.tabtextsinmethod);
-//     tabtextsinmethod = result.tabtextsinmethod;
-//   });
-//   return tabtextsinmethod;
-// };
+document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll("script:not([src])").forEach(function (scriptTxt) {
+    checkListeners(scriptTxt.text, document.location.href);
+  });
 
-// const buttonnn = document.createElement("button");
-// buttonnn.innerHTML = "Click me";
-// buttonnn.onclick = function () {
-//   console.log("Button clicked");
-//   let tabtexts = getTabTextsFromLocalStorage();
-//   console.log(tabtexts);
-//   increaseTabText(1421358641);
-// };
+  document.querySelectorAll("script[src]").forEach(function (script) {
+    fetch(script.src)
+      .then((x) => x.text())
+      .then((x) => {
+        checkListeners(x, script.src);
+      });
+  });
 
-// document.addEventListener("DOMContentLoaded", function () {
-//   document.querySelector("body").innerHTML = "";
-
-//   document.body.appendChild(buttonnn);
-// });
+  let scriptElements = document.querySelectorAll("script[src]");
+  scriptElements.forEach(function (scriptTag) {
+    let srcAttribute = scriptTag.getAttribute("src");
+    fetch(srcAttribute)
+      .then((scriptSrc) => scriptSrc.text())
+      .then(function (scriptTxt) {
+        checkListeners(scriptTxt);
+      });
+  });
+});

@@ -1,4 +1,4 @@
-https://www.youtube.com/watch?v=1JT_lTfK69Q
+<https://www.youtube.com/watch?v=1JT_lTfK69Q>
 
 who am i
 who knows what this is
@@ -28,9 +28,6 @@ send yo we hacked you
 reaction to come to headquarters
 meeting
 demo
-
-
-
 
 Who likes paying to ride the subway? Sure, you could hop the fare gates, but that can be athletically challenging and simply isn’t cool enough for our tastes. What’s a mischievous and miserly rider to do, then? Hack the fare system of course!
 
