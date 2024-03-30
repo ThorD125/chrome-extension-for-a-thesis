@@ -53,7 +53,9 @@ For now, you can visit websites and freely explore their features. If the extens
 | List of exploits                                   | ✅ Pending  |
 | Default files when exploitable                     | ✅ Pending  |
 | Adding settings                                    | 🟡 Pending  |
-| Notifing badge icon when exploit worked            | 🟡 Pending  |
+| Adding a way to insert your own payloads           | 🟡 Pending  |
+| Adding show all button to popup                    | 🟡 Pending  |
+| Notifing badge icon when exploit worked            | ✅ Pending  |
 
 ## Files Explained
 
