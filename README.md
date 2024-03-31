@@ -1,39 +1,24 @@
-# Chrome Extension Exploit Toolkit
+# Chrome Extension Pentest Toolkit
 
 This repository contains a Chrome extension that facilitates the demonstration and testing of various web security exploits. Follow the setup instructions below to get started.
 
-## Setup
-
-1. Clone this repository to a known location on your system, for example, `~/chrome-extension`.
-
-2. Open Google Chrome.
-
-3. Navigate to `chrome://extensions/` in the address bar.
-
-4. Enable developer mode by toggling the switch located at the top right corner.
-
-5. Click on the "Load unpacked" button and select the folder where you cloned this repository (`~/chrome-extension`).
-
-6. The extension should now be loaded into Chrome.
-
-7. Navigate to a webpage that you wish to test for vulnerabilities.
-
 ## TODO'S
 
-| TODO Item                                | Status     |
-| ---------------------------------------- | ---------- |
-| Identifying requests                     | ✅ Done    |
-| Identifying exploits                     | ✅ Done    |
-| Adding more exploits                     | ✅ Done    |
-| Adding multiple payloads                 | ✅ Done    |
-| Returning results                        | ✅ Done    |
-| Performing attacks                       | ✅ Done    |
-| List of exploits                         | ✅ Done    |
-| Default files to get when exploitable    | ✅ Done    |
-| Adding settings                          | 🟡 Pending |
-| Adding a way to insert your own payloads | 🟡 Pending |
-| Adding show all button to popup          | 🟡 Pending |
-| Notifing badge icon when exploit worked  | ✅ Done    |
+| TODO Item                                                        | Status     |
+| ---------------------------------------------------------------- | ---------- |
+| Identifying requests                                             | ✅ Done    |
+| Identifying exploits                                             | ✅ Done    |
+| Adding more exploits                                             | ✅ Done    |
+| Adding multiple payloads                                         | ✅ Done    |
+| Returning results                                                | ✅ Done    |
+| Performing attacks                                               | ✅ Done    |
+| List of exploits                                                 | ✅ Done    |
+| Default files to get when exploitable                            | ✅ Done    |
+| Adding settings                                                  | 🟡 Pending |
+| Adding a way to insert your own payloads                         | 🟡 Pending |
+| Adding show all button to popup                                  | 🟡 Pending |
+| Notifing badge icon when exploit worked                          | ✅ Done    |
+| Default search for info on every new site fe .git folder, emails | 🟡 Pending |
 
 ## TedTalk
 
@@ -106,6 +91,22 @@ To address the issue of not always having the console open, I introduced badges 
 
 ### - adding more explanations of the other exploits and show pocs
 
+## Setup
+
+1. Clone this repository to a known location on your system, for example, `~/chrome-extension`.
+
+2. Open Google Chrome.
+
+3. Navigate to `chrome://extensions/` in the address bar.
+
+4. Enable developer mode by toggling the switch located at the top right corner.
+
+5. Click on the "Load unpacked" button and select the folder where you cloned this repository (`~/chrome-extension`).
+
+6. The extension should now be loaded into Chrome.
+
+7. Navigate to a webpage that you wish to test for vulnerabilities.
+
 ## How to use
 
 For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service. To access the service:
@@ -116,14 +117,14 @@ For now, you can visit websites and freely explore their features. If the extens
 
 ## Sources
 
-“All labs | Web Security Academy.” <https://portswigger.net/web-security/all-labs>
-“API reference,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/reference/api>
-“Chat GPT.” <https://chat.openai.com/auth/login>
-A. Leybourne, “Chrome Extension Icon Generator.” <https://alexleybourne.github.io/chrome-extension-icon-generator/>
-“Extensions / Manifest v3 | Chrome for Developers,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3>
-Scribbr, “Free Citation Generator | APA, MLA, Chicago | Scribbr,” Scribbr, Mar. 21, 2024. <https://www.scribbr.com/citation/generator>
-“People of Twitter.” <https://twitter.com/home>
-“Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
+- “All labs | Web Security Academy.” <https://portswigger.net/web-security/all-labs>
+- “API reference,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/reference/api>
+- “Chat GPT.” <https://chat.openai.com/auth/login>
+- A. Leybourne, “Chrome Extension Icon Generator.” <https://alexleybourne.github.io/chrome-extension-icon-generator/>
+- “Extensions / Manifest v3 | Chrome for Developers,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3>
+- Scribbr, “Free Citation Generator | APA, MLA, Chicago | Scribbr,” Scribbr, Mar. 21, 2024. <https://www.scribbr.com/citation/generator>
+- “People of Twitter.” <https://twitter.com/home>
+- “Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
 
 <!-- TODO add sources postmessage<https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205> -->
 <!-- TODO add sources tedtalk <https://www.youtube.com/watch?v=1JT_lTfK69Q> -->
