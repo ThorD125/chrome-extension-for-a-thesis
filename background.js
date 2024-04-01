@@ -2,7 +2,7 @@ import setup_attack from "./setup/attack.js";
 import setupGatheringResponse from "./setup/gatheringResponse.js";
 
 import { exploitelse } from "./exploits/exploitelse.js";
-import { urlIgnoreList } from "./utils/vars.js";
+import { getSettings } from "./utils/vars.js";
 import { includesAnyOfList } from "./utils/helpers.js";
 
 console.log(
@@ -24,7 +24,7 @@ chrome.webRequest.onBeforeRequest.addListener(
 
     if (
       typeof networkrequest.initiator == "undefined" ||
-      includesAnyOfList(networkrequest.initiator, urlIgnoreList)
+      includesAnyOfList(networkrequest.initiator, getSettings().urlIgnoreList)
     ) {
       return;
     }

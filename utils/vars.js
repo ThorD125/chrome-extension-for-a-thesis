@@ -1,4 +1,4 @@
-export const urlIgnoreList = [
+const urlIgnoreList = [
   "https://www.youtube.com",
   "https://www.google.com",
   "https://chat.openai.com",
@@ -8,16 +8,16 @@ export const urlIgnoreList = [
   "https://portswigger.net",
 ];
 
-export const resultIgnoreList = [
+const resultIgnoreList = [
   "Invalid",
   "Syntax error",
   "No such file",
   "Bad Request",
 ];
 
-export const interestingFiles = ["/etc/passwd", "/etc/shadow", "/etc/hosts"];
+const interestingFiles = ["/etc/passwd", "/etc/shadow", "/etc/hosts"];
 
-export const defaultCommands = ["whoami", "ls", "pwd", "cat /etc/passwd"];
+const defaultCommands = ["whoami", "ls", "pwd", "cat /etc/passwd"];
 
 export const defaultVars = {
   urlIgnoreList: urlIgnoreList,
@@ -25,3 +25,15 @@ export const defaultVars = {
   interestingFiles: interestingFiles,
   defaultCommands: defaultCommands,
 };
+
+export function getSettings() {
+  const settings = chrome.storage.local.get(["mySetting"], function (result) {
+    return result.mySetting;
+  });
+
+  if (settings === undefined) {
+    return defaultVars;
+  }
+
+  return settings;
+}

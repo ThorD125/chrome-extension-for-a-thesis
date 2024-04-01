@@ -44,39 +44,6 @@ export function appendResultToContent(resultText) {
   content.appendChild(br);
 }
 
-export function populizePopup(data) {
-  document.querySelector("h1").innerText = data.title;
-  document.querySelector(".tab").innerText = data.id;
-
-  // console.log(data.attacks);
-  data.attacks.forEach((attack) => {
-    document
-      .getElementById("content")
-      .appendChild(createNodeFromString(`<p>${attack.attackType}</p><br>`));
-
-    attack.results.forEach((result) => {
-      const buttonContainer = document.getElementById("content");
-
-      const button = document.createElement("button");
-      button.textContent = "Copy";
-
-      button.addEventListener("click", function () {
-        navigator.clipboard
-          .writeText(result.fetch)
-          .then(() => {
-            console.log("Text copied to clipboard");
-          })
-          .catch((err) => {
-            console.error("Failed to copy text: ", err);
-          });
-      });
-
-      buttonContainer.appendChild(button);
-      appendResultToContent(result.result);
-    });
-  });
-}
-
 export function copyButton() {
   console.log("Button clicked");
 
@@ -94,16 +61,6 @@ export function includesAnyOfList(item, list) {
   return list.some((listItem) => item.includes(listItem));
 }
 
-export function getListeners(script) {
-  const matches = script
-    .replace(/\s+|\n+|\t+/g, " ")
-    .trim()
-    .match(/addEventListener\((['"]).*?\1/g);
-
-  if (matches) {
-    return matches.map((x) =>
-      x.replace(/addEventListener\((['"])/g, "").slice(0, -1)
-    );
-  }
-  return;
+export function goToConfig() {
+  chrome.runtime.openOptionsPage();
 }

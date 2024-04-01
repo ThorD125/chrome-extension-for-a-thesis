@@ -1,5 +1,3 @@
-import { getListeners } from "./utils/helpers.js";
-
 console.log("content.js loaded");
 
 // LINKS POSTMESSAGE https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205
@@ -44,3 +42,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 });
+
+function getListeners(script) {
+  const matches = script
+    .replace(/\s+|\n+|\t+/g, " ")
+    .trim()
+    .match(/addEventListener\((['"]).*?\1/g);
+
+  if (matches) {
+    return matches.map((x) =>
+      x.replace(/addEventListener\((['"])/g, "").slice(0, -1)
+    );
+  }
+  return;
+}

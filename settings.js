@@ -2,7 +2,7 @@ import { defaultVars } from "./utils/vars.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   loadSettings();
-  addSave();
+  addSave;
 });
 
 function loadSettings() {
