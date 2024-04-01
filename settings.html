@@ -28,9 +28,15 @@
         <label for="defaultCommands">Default commands to try to get:</label>
         <textarea type="text" id="defaultCommands"></textarea>
     </div>
+
+    <div>
+        <label for="defaultMinResponseLength">Min Length of a response (if 0 do not filter on response length):</label>
+        <input type="number" id="defaultMinResponseLength" />
+    </div>
+
     <button id="saveBtn">Save</button>
 
-    <script src="options.js" type="module"></script>
+    <script src="settings.js" type="module"></script>
 </body>
 
 </html>

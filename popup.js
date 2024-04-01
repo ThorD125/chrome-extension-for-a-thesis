@@ -1,5 +1,9 @@
 import { readFromDatabase } from "./utils/database.js";
-import { goToConfig, createNodeFromString } from "./utils/helpers.js";
+import {
+  goToConfig,
+  createNodeFromString,
+  appendResultToContent,
+} from "./utils/helpers.js";
 
 import { getCurrentTabId } from "./utils/tabmanager.js";
 

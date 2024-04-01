@@ -17,6 +17,8 @@ function loadSettings() {
       result.mySetting.interestingFiles.join("\n");
     document.getElementById("defaultCommands").value =
       result.mySetting.defaultCommands.join("\n");
+    document.getElementById("defaultMinResponseLength").value =
+      result.mySetting.defaultMinResponseLength;
   });
 }
 
@@ -42,12 +44,15 @@ function saveSettings() {
   const resultIgnoreList = document.getElementById("resultIgnoreList").value;
   const interestingFiles = document.getElementById("interestingFiles").value;
   const defaultCommands = document.getElementById("defaultCommands").value;
-
+  const defaultMinResponseLength = document.getElementById(
+    "defaultMinResponseLength"
+  ).value;
   const mySettingValue = {
     urlIgnoreList: urlIgnoreList.split("\n"),
     resultIgnoreList: resultIgnoreList.split("\n"),
     interestingFiles: interestingFiles.split("\n"),
     defaultCommands: defaultCommands.split("\n"),
+    defaultMinResponseLength: defaultMinResponseLength,
   };
 
   chrome.storage.local.set({ mySetting: mySettingValue }, function () {

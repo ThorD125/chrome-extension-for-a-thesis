@@ -19,11 +19,14 @@ const interestingFiles = ["/etc/passwd", "/etc/shadow", "/etc/hosts"];
 
 const defaultCommands = ["whoami", "ls", "pwd", "cat /etc/passwd"];
 
+const defaultMinResponseLength = 50;
+
 export const defaultVars = {
   urlIgnoreList: urlIgnoreList,
   resultIgnoreList: resultIgnoreList,
   interestingFiles: interestingFiles,
   defaultCommands: defaultCommands,
+  defaultMinResponseLength: defaultMinResponseLength,
 };
 
 export function getSettings() {

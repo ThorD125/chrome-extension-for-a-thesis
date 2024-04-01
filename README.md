@@ -14,7 +14,7 @@ This repository contains a Chrome extension that facilitates the demonstration a
 | Performing attacks                                               | ✅ Done    |
 | List of exploits                                                 | ✅ Done    |
 | Default files to get when exploitable                            | ✅ Done    |
-| Adding settings                                                  | 🟡 Pending |
+| Adding settings                                                  | ✅ Pending |
 | Adding a way to insert your own payloads                         | 🟡 Pending |
 | Adding show all button to popup                                  | 🟡 Pending |
 | Notifing badge icon when exploit worked                          | ✅ Done    |
