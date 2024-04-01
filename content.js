@@ -19,23 +19,55 @@ function checkListeners(script, url) {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+function includesAnyOfList(item, list) {
+  if (list === undefined) return false;
+  return list.some((listItem) => item.includes(listItem));
+}
+
+async function getSettings() {
+  return await chrome.storage.local.get(["mySetting"]).then(function (result) {
+    return result.mySetting;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async function () {
   document.querySelectorAll("script:not([src])").forEach(function (scriptTxt) {
     checkListeners(scriptTxt.text, document.location.href);
   });
+  const settings = await getSettings();
 
-  document.querySelectorAll("script[src]").forEach(function (script) {
-    fetch(script.src)
+  document.querySelectorAll("script[src]").forEach(async function (script) {
+    const denyList = settings.urlIgnoreList;
+    if (includesAnyOfList(script.src, denyList)) {
+      return;
+    }
+
+    await fetch(script.src)
       .then((x) => x.text())
       .then((x) => {
         checkListeners(x, script.src);
+      })
+      .catch((err) => {
+        return;
       });
   });
 
   let scriptElements = document.querySelectorAll("script[src]");
-  scriptElements.forEach(function (scriptTag) {
+  scriptElements.forEach(async function (scriptTag) {
     let srcAttribute = scriptTag.getAttribute("src");
-    fetch(srcAttribute)
+    if (srcAttribute.startsWith("//")) {
+      srcAttribute = "https:" + srcAttribute;
+    } else if (srcAttribute.startsWith("/")) {
+      srcAttribute = window.location.origin + srcAttribute;
+    } else {
+      return;
+    }
+
+    if (includesAnyOfList(srcAttribute, settings.urlIgnoreList)) {
+      return;
+    }
+
+    await fetch(srcAttribute)
       .then((scriptSrc) => scriptSrc.text())
       .then(function (scriptTxt) {
         checkListeners(scriptTxt);

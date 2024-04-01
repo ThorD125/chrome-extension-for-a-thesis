@@ -2,7 +2,7 @@ import { defaultVars } from "./utils/vars.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   loadSettings();
-  addSave;
+  addSave();
 });
 
 function loadSettings() {
@@ -30,6 +30,8 @@ async function setDefaultSettings(settings) {
     for (const key in settings) {
       if (settings[key].length === 0) {
         settings[key] = defaultVars[key];
+      } else if (settings[key].length === 1 && settings[key][0] === "") {
+        settings[key] = defaultVars[key];
       }
     }
   }
@@ -54,7 +56,8 @@ function saveSettings() {
 }
 
 function addSave() {
-  document.getElementById("saveBtn").addEventListener("click", saveSettings());
+  document.getElementById("saveBtn").addEventListener("click", saveSettings);
+
   document.addEventListener("keydown", (e) => {
     if (e.ctrlKey && e.key === "s") {
       e.preventDefault();

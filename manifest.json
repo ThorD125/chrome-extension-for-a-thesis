@@ -22,6 +22,16 @@
             "all_frames": true
         }
     ],
+    "web_accessible_resources": [
+        {
+            "matches": [
+                "<all_urls>"
+            ],
+            "resources": [
+                "utils/vars.js"
+            ]
+        }
+    ],
     "permissions": [
         "cookies",
         "storage",
