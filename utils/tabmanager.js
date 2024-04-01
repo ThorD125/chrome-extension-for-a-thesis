@@ -51,6 +51,9 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 export function updateBadge(tabId) {
   readFromDatabase("tabManager", tabId)
     .then((data) => {
+      if (!data) {
+        return;
+      }
       if (!data.count) {
         return;
       }

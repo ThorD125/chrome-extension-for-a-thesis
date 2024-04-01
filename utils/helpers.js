@@ -93,3 +93,17 @@ export function copyButton() {
 export function includesAnyOfList(item, list) {
   return list.some((listItem) => item.includes(listItem));
 }
+
+export function getListeners(script) {
+  const matches = script
+    .replace(/\s+|\n+|\t+/g, " ")
+    .trim()
+    .match(/addEventListener\((['"]).*?\1/g);
+
+  if (matches) {
+    return matches.map((x) =>
+      x.replace(/addEventListener\((['"])/g, "").slice(0, -1)
+    );
+  }
+  return;
+}

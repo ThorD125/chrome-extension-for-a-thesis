@@ -8,13 +8,20 @@ export const urlIgnoreList = [
   "https://portswigger.net",
 ];
 
-export const fileContentIgnoreList = [
+export const resultIgnoreList = [
   "Invalid",
   "Syntax error",
   "No such file",
   "Bad Request",
 ];
 
-export const interestingFiles = ["etc/passwd", "etc/shadow", "etc/hosts"];
+export const interestingFiles = ["/etc/passwd", "/etc/shadow", "/etc/hosts"];
 
 export const defaultCommands = ["whoami", "ls", "pwd", "cat /etc/passwd"];
+
+export const defaultVars = {
+  urlIgnoreList: urlIgnoreList,
+  resultIgnoreList: resultIgnoreList,
+  interestingFiles: interestingFiles,
+  defaultCommands: defaultCommands,
+};

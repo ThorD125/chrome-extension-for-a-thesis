@@ -86,3 +86,7 @@ chrome.offscreen.createDocument({
 });
 
 setupGatheringResponse();
+
+chrome.storage.local.get(["mySetting"], function (result) {
+  console.log("Value currently is " + result.mySetting);
+});

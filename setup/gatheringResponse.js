@@ -4,7 +4,7 @@ import {
   readFromDatabase,
 } from "../utils/database.js";
 import { includesAnyOfList } from "../utils/helpers.js";
-import { fileContentIgnoreList } from "../utils/vars.js";
+import { resultIgnoreList } from "../utils/vars.js";
 
 import { getCurrentTabId, getTabTitleById } from "../utils/tabmanager.js";
 import {
@@ -23,7 +23,7 @@ export default async function setupGatheringResponse() {
       if (50 < x.result.length) {
         return true;
       } else {
-        if (includesAnyOfList(x.result, fileContentIgnoreList)) {
+        if (includesAnyOfList(x.result, resultIgnoreList)) {
           return false;
         }
         // console.log("short results", x );
