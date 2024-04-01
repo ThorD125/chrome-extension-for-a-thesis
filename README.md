@@ -20,6 +20,11 @@ This repository contains a Chrome extension that facilitates the demonstration a
 | Notifing badge icon when exploit worked                          | ✅ Done    |
 | Default search for info on every new site fe .git folder, emails | 🟡 Pending |
 
+<!-- maybe send checking of postmessage to offscreen -->
+<!-- send window.postmessage to popup -->
+<!-- hook methods and send to the popup, eval, innerHTML, window.location, window.document, window.history, window.event, document.write, insertAdjacentHTML, insertAfter, insertBefore, outerHTML, document.writeln -->
+<!-- mention if there is a content security policy -->
+
 ## TedTalk
 
 ### - who am i (### - titles die hiermee beginnen moeten nog uitgewerkt worden)
