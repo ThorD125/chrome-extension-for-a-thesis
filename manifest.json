@@ -46,7 +46,8 @@
         "activeTab",
         "scripting",
         "debugger",
-        "dns"
+        "dns",
+        "sidePanel"
     ],
     "host_permissions": [
         "<all_urls>"
@@ -56,6 +57,9 @@
         "32": "icons/icon32.png",
         "48": "icons/icon48.png",
         "128": "icons/icon128.png"
+    },
+    "side_panel": {
+        "default_path": "popup.html"
     },
     "options_page": "settings.html"
 }
