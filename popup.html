@@ -6,16 +6,41 @@
         body {
             width: 400px;
         }
+
+        #infoContent {
+            display: flex;
+            width: 100%;
+        }
+
+        #left,
+        #right {
+            width: 50%;
+        }
+
+        #infoContent p {
+            width: 100%;
+            text-wrap: wrap;
+        }
     </style>
 </head>
 
 <body>
+
+    <h1></h1>
     <button id="configure">configure</button>
 
-    <h1>No Attacks</h1>
-    <p class="tab">yet</p>
-    <div id="content"></div>
+    <div>
+        <p class="infoTab">Information</p>
+        <div id="infoContent">
+            <div id="left"></div>
+            <div id="right"></div>
+        </div>
+    </div>
 
+    <div>
+        <p class="attackTab">No attack yet</p>
+        <div id="attackContent"></div>
+    </div>
 
 
     <script type="module" src="popup.js"></script>

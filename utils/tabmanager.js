@@ -1,4 +1,4 @@
-import { readFromDatabase } from "./database.js";
+import { readFromDatabase, updateGeneralTabInfo } from "./database.js";
 
 export function getCurrentTabId() {
   return new Promise((resolve, reject) => {
@@ -50,7 +50,25 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 function activateTabStuff(tabId) {
   updateBadge(tabId);
+  // console.log("tabId", tabId);
+  getTabInfoById(tabId).then(async (tab) => {
+    const newInfo = await resolveDNS(tab.url);
+    updateGeneralTabInfo(tabId, newInfo);
+  });
 }
+
+const resolveDNS = async (website) => {
+  const siteRegex = /https?:\/\/(www\.)?([^\/]+)/g;
+  let site = "";
+  try {
+    site = siteRegex.exec(website)[2];
+  } catch (error) {
+    return;
+  }
+  return await chrome.dns.resolve(site).then((result) => {
+    return { site: site, url: website, ip: result.address };
+  });
+};
 
 export function updateBadge(tabId) {
   readFromDatabase("tabManager", tabId)
@@ -65,4 +83,12 @@ export function updateBadge(tabId) {
       setBadgeColor(tabId, "red");
     })
     .catch((error) => console.error(error));
+}
+
+function getTabInfoById(tabId) {
+  return new Promise((resolve, reject) => {
+    chrome.tabs.get(tabId, (tab) => {
+      resolve(tab);
+    });
+  });
 }

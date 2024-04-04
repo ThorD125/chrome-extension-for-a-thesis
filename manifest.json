@@ -45,7 +45,8 @@
         "commands",
         "activeTab",
         "scripting",
-        "debugger"
+        "debugger",
+        "dns"
     ],
     "host_permissions": [
         "<all_urls>"

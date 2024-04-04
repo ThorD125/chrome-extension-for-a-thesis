@@ -4,8 +4,16 @@ export function openDatabase() {
 
     request.onupgradeneeded = function (event) {
       const db = event.target.result;
-      db.createObjectStore("attackingDatabase", { keyPath: "id" });
-      db.createObjectStore("tabManager", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("attackingDatabase")) {
+        db.createObjectStore("attackingDatabase", { keyPath: "id" });
+      }
+      if (!db.objectStoreNames.contains("tabManager")) {
+        db.createObjectStore("tabManager", { keyPath: "id" });
+      }
+      // Create the new object store here.
+      if (!db.objectStoreNames.contains("generaltabinfo")) {
+        db.createObjectStore("generaltabinfo", { keyPath: "id" });
+      }
     };
 
     request.onerror = function (event) {
@@ -28,6 +36,7 @@ export async function readFromDatabase(table, key) {
     request.onerror = () => reject("Error fetching data.");
   });
 }
+
 export async function appendToObjectList(identifier, newObj) {
   const db = await openDatabase("attackingDatabase");
   const transaction = db.transaction(["attackingDatabase"], "readwrite");
@@ -37,10 +46,8 @@ export async function appendToObjectList(identifier, newObj) {
     request.onsuccess = () => {
       let data = request.result;
       if (data) {
-        // If the entry exists, append the new object to the list
         data.attacks.push(newObj);
       } else {
-        // If the entry does not exist, create it with newObj as the first item in the list
         data = {
           id: identifier.id,
           title: identifier.title,
@@ -76,5 +83,30 @@ export async function addToTabManager(tabId, count) {
       updateRequest.onerror = () => reject("Error appending object.");
     };
     request.onerror = () => reject("Error fetching existing data.");
+  });
+}
+
+export async function updateGeneralTabInfo(tabId, info) {
+  const db = await openDatabase();
+  const transaction = db.transaction(["generaltabinfo"], "readwrite");
+  const store = transaction.objectStore("generaltabinfo");
+  return new Promise((resolve, reject) => {
+    const request = store.get(tabId);
+    request.onsuccess = () => {
+      let data = request.result || { id: tabId };
+      if (!!info) {
+        data = { id: tabId };
+        for (const [key, value] of Object.entries(info)) {
+          if (value) {
+            data[key] = value;
+          }
+        }
+      }
+      const updateRequest = store.put(data);
+      updateRequest.onsuccess = () =>
+        resolve("General tab info updated successfully.");
+      updateRequest.onerror = () => reject("Error updating general tab info.");
+    };
+    request.onerror = () => reject("Error fetching existing general tab info.");
   });
 }
