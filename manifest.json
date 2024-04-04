@@ -28,7 +28,8 @@
                 "<all_urls>"
             ],
             "resources": [
-                "utils/vars.js"
+                "utils/vars.js",
+                "inject.js"
             ]
         }
     ],
@@ -40,7 +41,11 @@
         "webRequest",
         "offscreen",
         "commands",
-        "unlimitedStorage"
+        "unlimitedStorage",
+        "commands",
+        "activeTab",
+        "scripting",
+        "debugger"
     ],
     "host_permissions": [
         "<all_urls>"

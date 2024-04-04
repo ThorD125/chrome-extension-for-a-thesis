@@ -39,14 +39,18 @@ export function setBadgeColor(tabId, color) {
 }
 
 chrome.tabs.onCreated.addListener(function (tab) {
-  updateBadge(tab.id);
+  activateTabStuff(tab.id);
 });
 chrome.tabs.onUpdated.addListener(function (tabId) {
-  updateBadge(tabId);
+  activateTabStuff(tabId);
 });
 chrome.tabs.onActivated.addListener(function (activeInfo) {
-  updateBadge(activeInfo.tabId);
+  activateTabStuff(activeInfo.tabId);
 });
+
+function activateTabStuff(tabId) {
+  updateBadge(tabId);
+}
 
 export function updateBadge(tabId) {
   readFromDatabase("tabManager", tabId)

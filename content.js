@@ -2,6 +2,20 @@ console.log("content.js loaded");
 
 // LINKS POSTMESSAGE https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205
 // https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages
+// const aCommandList = ["console.error"];
+
+// // const oldError = console.error;
+// // console.error = (...args) => {
+// //   console.log("customerrororo");
+// //   oldError(...args);
+// // };
+// // content.js
+// var script = document.createElement("script");
+// script.src = chrome.runtime.getURL("inject.js");
+// (document.head || document.documentElement).appendChild(script);
+// script.onload = function () {
+//   this.remove();
+// };
 
 function checkPostMessage(url) {
   console.log("Checking postMessage for " + url);
@@ -88,3 +102,12 @@ function getListeners(script) {
   }
   return;
 }
+
+// for (x in aCommandList) {
+//   eval(`const old${x} = ${x};
+//   ${x} = (...args) => {
+//     old${x}(...args);
+//     console.log({ ...args });
+//     console.log("customerrororo");
+// }`);
+// }

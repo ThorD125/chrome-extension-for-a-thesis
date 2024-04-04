@@ -131,5 +131,6 @@ For now, you can visit websites and freely explore their features. If the extens
 - “People of Twitter.” <https://twitter.com/home>
 - “Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
 
+<!-- TODO add - https://developer.chrome.com/docs/extensions/reference -->
 <!-- TODO add sources postmessage<https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205> -->
 <!-- TODO add sources tedtalk <https://www.youtube.com/watch?v=1JT_lTfK69Q> -->
