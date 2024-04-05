@@ -37,6 +37,17 @@ export async function readFromDatabase(table, key) {
   });
 }
 
+export async function readAllFromDatabase(table) {
+  const db = await openDatabase();
+  const transaction = db.transaction([table], "readonly");
+  const store = transaction.objectStore(table);
+  return new Promise((resolve, reject) => {
+    const request = store.getAll();
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject("Error fetching data.");
+  });
+}
+
 export async function appendToObjectList(identifier, newObj) {
   const db = await openDatabase("attackingDatabase");
   const transaction = db.transaction(["attackingDatabase"], "readwrite");

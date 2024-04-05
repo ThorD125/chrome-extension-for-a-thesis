@@ -1,5 +1,5 @@
-import { readFromDatabase } from "./utils/database.js";
-import { goToConfig, createNodeFromString } from "./utils/helpers.js";
+import { readFromDatabase, readAllFromDatabase } from "./utils/database.js";
+import { goToConfig } from "./utils/helpers.js";
 
 import { getCurrentTabId } from "./utils/tabmanager.js";
 
@@ -15,12 +15,30 @@ document.addEventListener("DOMContentLoaded", function () {
       .catch((error) => console.error(error));
   });
 
+  const content = document.createElement("div");
+  content.id = "content";
   getCurrentTabId().then((tabId) => {
     readFromDatabase("attackingDatabase", tabId)
-      .then((data) => showAttacks(data))
+      .then((data) => document.body.appendChild(showAttacks(content, data)))
       .catch((error) => console.error(error));
   });
 });
+
+function showAll() {
+  document.querySelector("#content").remove();
+  readAllFromDatabase("attackingDatabase")
+    .then((data) => {
+      const content = document.createElement("div");
+      content.id = "content";
+      data.forEach((item) => {
+        const newDiv = document.createElement("div");
+        showAttacks(newDiv, item);
+        content.appendChild(newDiv);
+      });
+      document.body.appendChild(content);
+    })
+    .catch((error) => console.error(error));
+}
 
 function showInfo(data) {
   if (!data) {
@@ -46,21 +64,19 @@ function showInfo(data) {
   document.body.appendChild(infoDiv);
 }
 
-function showAttacks(data) {
+function showAttacks(theContent, data) {
   if (!data) {
     return;
   }
   const h1 = document.createElement("h1");
   h1.innerText = `Attacks for Tab: ${data.id}`;
 
-  const attackDiv = document.createElement("div");
-
-  attackDiv.appendChild(h1);
+  theContent.appendChild(h1);
 
   data.attacks.forEach((attack) => {
     const h2 = document.createElement("h2");
     h2.innerText = attack.attackType;
-    attackDiv.appendChild(h2);
+    theContent.appendChild(h2);
 
     attack.results.forEach((result) => {
       const button = document.createElement("button");
@@ -72,7 +88,7 @@ function showAttacks(data) {
         });
       });
 
-      attackDiv.appendChild(button);
+      theContent.appendChild(button);
 
       const content = document.createElement("div");
       const h2 = document.createElement("h2");
@@ -84,8 +100,8 @@ function showAttacks(data) {
       content.appendChild(h2);
       content.appendChild(pre);
 
-      attackDiv.appendChild(content);
+      theContent.appendChild(content);
     });
-    document.body.appendChild(attackDiv);
   });
+  return theContent;
 }
