@@ -1,3 +1,3 @@
 export default function setup_attack(request, attack) {
-  chrome.runtime.sendMessage({ [`${attack}`]: request });
+  chrome.runtime.sendMessage({ action: "setupAttack", [`${attack}`]: request });
 }

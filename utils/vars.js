@@ -30,13 +30,17 @@ export const defaultVars = {
 };
 
 export function getSettings() {
-  const settings = chrome.storage.local.get(["mySetting"], function (result) {
-    return result.mySetting;
-  });
+  try {
+    const settings = chrome.storage.local.get(["mySetting"], function (result) {
+      return result.mySetting;
+    });
 
-  if (settings === undefined) {
+    if (settings === undefined) {
+      return defaultVars;
+    }
+
+    return settings;
+  } catch (error) {
     return defaultVars;
   }
-
-  return settings;
 }

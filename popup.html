@@ -3,45 +3,59 @@
 
 <head>
     <style>
-        body {
-            width: 400px;
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+            word-break: break-all;
         }
 
-        #infoContent {
+        body {
+            width: 400px;
+            padding: 1rem;
+        }
+
+        div {
             display: flex;
+            flex-wrap: wrap;
             width: 100%;
         }
 
-        #left,
-        #right {
+
+        div p {
+            width: 50%;
+            padding: 0;
+        }
+
+        h1 {
+            margin: 1rem 0;
+            width: 100%;
+        }
+
+        h2,
+        button {
             width: 50%;
         }
 
-        #infoContent p {
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        div div:not(:last-of-type) pre {
             width: 100%;
-            text-wrap: wrap;
+            border-bottom: 1px solid #000;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
 
 <body>
 
-    <h1></h1>
-    <button id="configure">configure</button>
-
     <div>
-        <p class="infoTab">Information</p>
-        <div id="infoContent">
-            <div id="left"></div>
-            <div id="right"></div>
-        </div>
+        <button id="configure">configure</button>
+        <button id="showAll">show All</button>
     </div>
-
-    <div>
-        <p class="attackTab">No attack yet</p>
-        <div id="attackContent"></div>
-    </div>
-
 
     <script type="module" src="popup.js"></script>
 </body>

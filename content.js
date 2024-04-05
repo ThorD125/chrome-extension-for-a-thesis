@@ -18,15 +18,18 @@ console.log("content.js loaded");
 // };
 
 function checkPostMessage(url) {
-  console.log("Checking postMessage for " + url);
+  chrome.runtime.sendMessage(
+    { action: "postmessage", url: url },
+    function (response) {
+      console.log(response);
+    }
+  );
 }
 
 function checkListeners(script, url) {
   const listeners = getListeners(script);
 
   if (listeners) {
-    console.log(`${url} contains events: (${listeners})`);
-
     if (listeners.includes("message")) {
       checkPostMessage(url);
     }

@@ -1,9 +1,5 @@
 import { readFromDatabase } from "./utils/database.js";
-import {
-  goToConfig,
-  createNodeFromString,
-  appendResultToContent,
-} from "./utils/helpers.js";
+import { goToConfig, createNodeFromString } from "./utils/helpers.js";
 
 import { getCurrentTabId } from "./utils/tabmanager.js";
 
@@ -11,6 +7,7 @@ console.log("popup.js");
 
 document.addEventListener("DOMContentLoaded", function () {
   document.querySelector("#configure").addEventListener("click", goToConfig);
+  document.querySelector("#showAll").addEventListener("click", showAll);
 
   getCurrentTabId().then((tabId) => {
     readFromDatabase("generaltabinfo", tabId)
@@ -30,36 +27,42 @@ function showInfo(data) {
     return;
   }
 
-  document.querySelector("h1").innerText = data.site;
+  const h1 = document.createElement("h1");
+
+  h1.innerText = `Information about ${data.site}`;
+
+  const infoDiv = document.createElement("div");
+  infoDiv.appendChild(h1);
 
   for (const [key, value] of Object.entries(data)) {
     if (key === "id") {
       continue;
     }
 
-    document.querySelector("#infoContent #left").innerHTML += `<p>${key}</p>`;
+    infoDiv.innerHTML += `<p>${key}</p>`;
 
-    document.querySelector(
-      "#infoContent #right"
-    ).innerHTML += `<p>${value}</p>`;
+    infoDiv.innerHTML += `<p>${value}</p>`;
   }
+  document.body.appendChild(infoDiv);
 }
 
 function showAttacks(data) {
   if (!data) {
     return;
   }
-  // document.querySelector("h1").innerText = data.title;
-  document.querySelector(".attackTab").innerText = data.id;
+  const h1 = document.createElement("h1");
+  h1.innerText = `Attacks for Tab: ${data.id}`;
+
+  const attackDiv = document.createElement("div");
+
+  attackDiv.appendChild(h1);
 
   data.attacks.forEach((attack) => {
-    document
-      .getElementById("attackContent")
-      .appendChild(createNodeFromString(`<p>${attack.attackType}</p><br>`));
+    const h2 = document.createElement("h2");
+    h2.innerText = attack.attackType;
+    attackDiv.appendChild(h2);
 
     attack.results.forEach((result) => {
-      const buttonContainer = document.getElementById("content");
-
       const button = document.createElement("button");
       button.textContent = "Copy";
 
@@ -69,8 +72,20 @@ function showAttacks(data) {
         });
       });
 
-      buttonContainer.appendChild(button);
-      appendResultToContent(result.result);
+      attackDiv.appendChild(button);
+
+      const content = document.createElement("div");
+      const h2 = document.createElement("h2");
+      h2.textContent = "result:";
+
+      const pre = document.createElement("pre");
+      pre.textContent = result.result;
+
+      content.appendChild(h2);
+      content.appendChild(pre);
+
+      attackDiv.appendChild(content);
     });
+    document.body.appendChild(attackDiv);
   });
 }

@@ -95,17 +95,17 @@ export async function updateGeneralTabInfo(tabId, info) {
     request.onsuccess = () => {
       let data = request.result || { id: tabId };
       if (!!info) {
-        data = { id: tabId };
         for (const [key, value] of Object.entries(info)) {
           if (value) {
             data[key] = value;
           }
         }
+        const updateRequest = store.put(data);
+        updateRequest.onsuccess = () =>
+          resolve("General tab info updated successfully.");
+        updateRequest.onerror = () =>
+          reject("Error updating general tab info.");
       }
-      const updateRequest = store.put(data);
-      updateRequest.onsuccess = () =>
-        resolve("General tab info updated successfully.");
-      updateRequest.onerror = () => reject("Error updating general tab info.");
     };
     request.onerror = () => reject("Error fetching existing general tab info.");
   });

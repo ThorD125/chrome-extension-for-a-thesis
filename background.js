@@ -4,6 +4,7 @@ import setupGatheringResponse from "./setup/gatheringResponse.js";
 import { exploitelse } from "./exploits/exploitelse.js";
 import { getSettings } from "./utils/vars.js";
 import { includesAnyOfList } from "./utils/helpers.js";
+import { updateGeneralTabInfo } from "./utils/database.js";
 
 console.log(
   "this is a script that runs in the background not in the main console."
@@ -89,4 +90,11 @@ setupGatheringResponse();
 
 chrome.storage.local.get(["mySetting"], function (result) {
   console.log("Value currently is " + result.mySetting);
+});
+
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "postmessage") {
+    updateGeneralTabInfo(sender.tab.id, { postMessageUrl: request.url });
+    sendResponse("succesfullyy sent" + request.url);
+  }
 });

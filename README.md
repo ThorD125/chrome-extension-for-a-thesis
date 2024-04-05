@@ -4,26 +4,25 @@ This repository contains a Chrome extension that facilitates the demonstration a
 
 ## TODO'S
 
-| TODO Item                                                        | Status     |
-| ---------------------------------------------------------------- | ---------- |
-| Identifying requests                                             | ✅ Done    |
-| Identifying exploits                                             | ✅ Done    |
-| Adding more exploits                                             | ✅ Done    |
-| Adding multiple payloads                                         | ✅ Done    |
-| Returning results                                                | ✅ Done    |
-| Performing attacks                                               | ✅ Done    |
-| List of exploits                                                 | ✅ Done    |
-| Default files to get when exploitable                            | ✅ Done    |
-| Adding settings                                                  | ✅ Pending |
-| Adding a way to insert your own payloads                         | 🟡 Pending |
-| Adding show all button to popup                                  | 🟡 Pending |
-| Notifing badge icon when exploit worked                          | ✅ Done    |
-| Default search for info on every new site fe .git folder, emails | 🟡 Pending |
+| TODO Item                                                        | Status         |
+| ---------------------------------------------------------------- | -------------- |
+| Identifying requests                                             | ✅ Done        |
+| Identifying exploits                                             | ✅ Done        |
+| Adding more exploits                                             | ✅ Done        |
+| Adding multiple payloads                                         | ✅ Done        |
+| Returning results                                                | ✅ Done        |
+| Performing attacks                                               | ✅ Done        |
+| List of exploits                                                 | ✅ Done        |
+| Default files to get when exploitable                            | ✅ Done        |
+| Adding settings                                                  | ✅ Pending     |
+| Adding a way to insert your own payloads                         | 🟡 Pending     |
+| Adding show all button to popup                                  | 🟡 Pending     |
+| Notifing badge icon when exploit worked                          | ✅ Done        |
+| Default search for info on every new site fe .git folder, emails | 🟡 Pending     |
+| Hook defautl methods and send to the popup                       | ❌ Not Working |
+| Mention if there is a content security policy                    | 🟡 Pending     |
 
-<!-- maybe send checking of postmessage to offscreen -->
-<!-- send window.postmessage to popup -->
-<!-- hook methods and send to the popup, eval, innerHTML, window.location, window.document, window.history, window.event, document.write, insertAdjacentHTML, insertAfter, insertBefore, outerHTML, document.writeln -->
-<!-- mention if there is a content security policy -->
+<!-- (eval, innerHTML, window.location, window.document, window.history, window.event, document.write, insertAdjacentHTML, insertAfter, insertBefore, outerHTML, document.writeln) -->
 
 ## TedTalk
 
@@ -74,15 +73,14 @@ For examining and modifying requests, I utilized Burp Suite by Dafydd Stuttard, 
 
 ## Chrome Extension Exploit Identifier and Status Table
 
-| Exploit Identifier                               | Exploit Link                                                                                                  | Description                                                                                                                         | Working    |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| post_formbody_attack                             | [Exploit Link](https://portswigger.net/web-security/xxe/lab-xinclude-attack)                                  | This exploit demonstrates an XXE (XML External Entity) attack by exploiting vulnerabilities in the `post_formbody_attack` scenario. | ✅         |
-| post_xmlbody_attack                              | [Exploit Link](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files)                 | This exploit showcases the exploitation of XXE to retrieve files by targeting the `post_xmlbody_attack` scenario.                   | ✅         |
-| postmessage_exploit                              | [Exploit Link](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205)                         | This exploit demonstrates the exploitation of postMessage vulnerabilities.                                                          | 🟡 Pending |
-| blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages) | This exploit aims to demonstrate blind XXE with data retrieval via error messages.                                                  | 🟡 Pending |
-
-<!-- TODO add to table get_filepath <https://portswigger.net/web-security/file-path-traversal> -->
-<!-- TODO add to table postmessage identifying -->
+| Exploit Identifier                               | Exploit Link                                                                                                                                                                                                       | Description                                                                                                                         | Working    |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| post_formbody_attack                             | [Exploit Link](https://portswigger.net/web-security/xxe/lab-xinclude-attack)                                                                                                                                       | This exploit demonstrates an XXE (XML External Entity) attack by exploiting vulnerabilities in the `post_formbody_attack` scenario. | ✅         |
+| post_xmlbody_attack                              | [Exploit Link](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files)                                                                                                                      | This exploit showcases the exploitation of XXE to retrieve files by targeting the `post_xmlbody_attack` scenario.                   | ✅         |
+| postmessage_exploit                              |                                                                                                                                                                                                                    | This exploit demonstrates the exploitation of postMessage vulnerabilities.                                                          | 🟡 Pending |
+| blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages)                                                                                                      | This exploit aims to demonstrate blind XXE with data retrieval via error messages.                                                  | 🟡 Pending |
+| get_filepath                                     | [Exploit Link](https://portswigger.net/web-security/file-path-traversal)                                                                                                                                           | This exploit demonstrates file path traversal vulnerabilities by targeting the get_filepath scenario.                               | ✅ Pending |
+| postmessage_identifying                          | [Info Link1](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages);[Info Link2](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205) | This identifies possible vulnerabilities through the exploitation of the postMessage method.                                        | 🟡 Pending |
 
 ### Exploiting and Refining
 
