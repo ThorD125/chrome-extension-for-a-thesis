@@ -13,6 +13,7 @@ const resultIgnoreList = [
   "Syntax error",
   "No such file",
   "Bad Request",
+  "Bad Authentication",
 ];
 
 const interestingFiles = ["/etc/passwd", "/etc/shadow", "/etc/hosts"];

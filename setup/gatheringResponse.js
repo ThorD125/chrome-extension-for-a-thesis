@@ -11,6 +11,9 @@ import { updateBadge } from "../utils/tabmanager.js";
 
 export default async function setupGatheringResponse() {
   const onMessage = (result) => {
+    if (result.action != "attacksResponse") {
+      return;
+    }
     const theresults = result.results.filter((x) => {
       const minResponseLength = parseInt(
         getSettings().defaultMinResponseLength
