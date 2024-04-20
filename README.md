@@ -67,51 +67,42 @@ The first automatic exploit I worked on involved an XML attack, which I learned 
 
 Before i start explaining the exploits there are some things we need to get fimiliar with:
 
-- **manifest.json**: This file acts as the backbone of a Chrome extension. It configures the extension, declaring its major components, and requests the necessary permissions to function properly.
-
-- **background.js**: Think of this as the JavaScript powering the entire browser's extension environment. While it can't interact directly with the content of each tab, it can intercept requests and manage broader extension activities.
-
-- **offscreen.html**: This HTML file exists within the same operational context as a browsers tab but remains invisible to the user. It's a hidden layer where certain extension processes can run in the background.
-
-- **offscreen.js --renamed to--> listener.js**: Associated with offscreen.html, this JavaScript file is dedicated to monitoring specific events or "attacks" in the extension's hidden realm. It's where we listen for and respond to various triggers.
-
-- **content.js**: This script runs in the context of each browser tab, directly interacting with the web content. It's isolated to the tab it operates in, ensuring that its actions are tab-specific and do not interfere with the broader browser or other tabs.
-
-- **popup.html/js**: This is the screen you see when you click the extensions icon and where we see the results for a current tab
-
-- **options.html/js --renamed to--> settings.html/js**: Here we set some settings mainly filters for results/urls to ignore for a pentest
+- **manifest.json**: This file acts as the backbone of a Chrome extension. It configures the extension by declaring its major components and requesting the necessary permissions to function properly.
+- **background.js**: Think of this as the JavaScript that powers the entire browser extension environment. While it cannot interact directly with the content of each tab, it can intercept requests and manage broader extension activities.
+- **offscreen.html**: This HTML file exists within the same operational context as a browser tab but remains invisible to the user. It serves as a hidden layer where certain extension processes can run in the background.
+- **listener.js (previously offscreen.js)**: Associated with offscreen.html, this JavaScript file is dedicated to monitoring specific events or "attacks" within the extension's hidden realm. It is where we listen for and respond to various triggers.
+- **content.js**: This script runs in the context of each browser tab, directly interacting with the web content. It is isolated to the tab it operates in, ensuring that its actions are tab-specific and do not interfere with the broader browser or other tabs.
+- **popup.html/js**: This is the interface you see when you click the extension's icon, where the results for the current tab are displayed.
+- **settings.html/js (previously options.html/js)**: In this section, we configure settings, primarily filters for results and URLs to ignore during a penetration test.
 
 #### Issues
 
 ##### Scope
 
-During the development process, I encountered multiple challenges with the scope of js variables and methods, and also the storage.
+During the development process, I encountered multiple challenges related to the scope of JavaScript variables and methods, as well as storage.
 
 ![complicated scheme of the scope](readme/scope.webp)
 
-As you can see its not as easy to understand, so ill simplify it:
+As depicted, the structure is complex, but I will simplify it:
 
-First the javascript scopes
-you have a browser(accessed with the background.js) it has tabs(accessed with the content.js)
-these each have their scope and can only talk to each other with postmessages
-we also startup an offscreen html page this is loaded from the background and also has its own scope
-here we
+Firstly, regarding JavaScript scopes:
 
-all of these except for the content.js are modules, so these can use the import method wich is usefull for separating different methods into different files, but bcs the content.js is not a module i had to copy paste some methods that i wanted to use in my content
+- You have a browser which is interacted with via background.js. It contains tabs that are managed through content.js.
+- Each of these components has its own scope and communicates with others via post messages.
+- Additionally, an offscreen HTML page is started up, loaded from the background, and has its own scope.
 
-there also are the popup and settings but these also have its own scope and but get reloaded each time you open these so these dont really need to share data directly (except for the stored data)
+Except for content.js, all of these are modules, which allows the use of the import method. This is useful for separating different functions into different files. However, since content.js is not a module, I had to duplicate some methods that I wanted to use in my content scripts.
 
-then there is the storage scope,
-although localstorage and cookies is easy to implement it can only be accesed from the content.js
-but we needed storage that could be accessed from each part of the extension
-thus i found indexeddb, although this is relatively slow it get the job done
+Popup and settings pages also have their own scopes and are reloaded each time they are opened, so they don't need to directly share data (except for stored data).
+
+Then, regarding the storage scope:
+
+- While implementing localStorage and cookies is straightforward, they can only be accessed from content.js.
+- We needed storage that could be accessed from each part of the extension. Therefore, I opted for IndexedDB. Although relatively slow, it gets the job done.
 
 ##### Results
 
-In the beginning i always opened the extensions dev console and console logged each response,
-although for development this is easy and fast to check if something works or not i dont want this in my end product
-there fore i started looking into how i could save the results
-and then i also had to figure out how to show these, in the end i choose to save them in the indexeddb and show the results of a current page when clicking the extensions icon
+Initially, I always opened the extension’s development console and logged each response. While this is easy and fast for checking functionality during development, it is not suitable for the final product. Therefore, I explored methods to save the results and subsequently needed to determine how to display them. In the end, I decided to store them in IndexedDB and display the results of the current page when clicking the extension's icon.
 
 #### Tools and Methodology
 
