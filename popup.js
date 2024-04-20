@@ -28,12 +28,11 @@ function showAll() {
   document.querySelector("#content").remove();
   readAllFromDatabase("attackingDatabase")
     .then((data) => {
-      const content = document.createElement("div");
-      content.id = "content";
+      let content = document.createElement("div");
       data.forEach((item) => {
-        const newDiv = document.createElement("div");
-        showAttacks(newDiv, item);
-        content.appendChild(newDiv);
+        content = showAttacks(content, item);
+        // content.appendChild(showAttacks(newDiv, item));
+        // console.log(content);
       });
       document.body.appendChild(content);
     })
