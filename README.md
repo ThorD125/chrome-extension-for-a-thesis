@@ -173,3 +173,7 @@ For now, you can visit websites and freely explore their features. If the extens
 <!-- TODO add - https://developer.chrome.com/docs/extensions/reference -->
 <!-- TODO add sources postmessage<https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205> -->
 <!-- TODO add sources tedtalk <https://www.youtube.com/watch?v=1JT_lTfK69Q> -->
+
+### Honorable mentions
+
+- Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had. (if he ever reads this, this will stay xd)
