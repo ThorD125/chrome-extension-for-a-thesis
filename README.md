@@ -118,7 +118,7 @@ ChatGPT: For synthesizing information, explaining complex concepts in simpler te
 
 Each tool played a critical role in enhancing my capability to develop, troubleshoot, and optimize my applications efficiently.
 
-### Chrome Extension Exploit Identifier and Status Table
+#### Chrome Extension Exploit Identifier and Status Table
 
 This is an overview of all the exploits and the status of how far they have been implemented yet and also links to info about the exploits.
 
@@ -133,7 +133,11 @@ This is an overview of all the exploits and the status of how far they have been
 
 #### Exploiting and Refining
 
-### - adding more explanations of the other exploits and show pocs
+Generally, here's how the process works: When you visit a webpage and engage in activities like clicking buttons or other interactions, the extension detects specific identifiers or "footprints." If it recognizes any, and there are associated payloads, it sends these to an offscreen document. In this offscreen document, the extension tests the payloads, and then filters the results, which can be adjusted in the settings. Subsequently, the filtered results are stored in the IndexedDB, organized by the tab they originated from. Additionally, if there are any successful results, a counter is displayed on the extension's icon in the taskbar, also tab-specific.
+
+##### - adding more explanations of the other exploits and show pocs
+
+#### -
 
 ## Setup
 
@@ -159,7 +163,7 @@ For now, you can visit websites and freely explore their features. If the extens
 2. Surf website you may leggaly pentest
 3. After a while, if there are any exploits that succeeded, there will show a badge with the amount of exploits that succeeded, then you can click on the popup and it will show the exploits with a button to copy the executed exploit
 
-### Sources
+## References
 
 - “All labs | Web Security Academy.” <https://portswigger.net/web-security/all-labs>
 - “API reference,” Chrome for Developers. <https://developer.chrome.com/docs/extensions/reference/api>
@@ -169,11 +173,10 @@ For now, you can visit websites and freely explore their features. If the extens
 - Scribbr, “Free Citation Generator | APA, MLA, Chicago | Scribbr,” Scribbr, Mar. 21, 2024. <https://www.scribbr.com/citation/generator>
 - “People of Twitter.” <https://twitter.com/home>
 - “Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
-
-<!-- TODO add - https://developer.chrome.com/docs/extensions/reference -->
-<!-- TODO add sources postmessage<https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205> -->
-<!-- TODO add sources tedtalk <https://www.youtube.com/watch?v=1JT_lTfK69Q> -->
+- “Extensions / reference,” Chrome for Developers. Available: <https://developer.chrome.com/docs/extensions/reference>
+- C. Rai, “Exploiting PostMessage() - Chirag Rai - Medium,” Medium, Jan. 06, 2022. Available: <https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205>
+- DEFCONConference, “DEF CON 31 - Infinite Money Glitch - Hacking Transit Cards - Bertocchi, Campbell, Gibson, Harris,” YouTube. Aug. 23, 2023. Available: <https://www.youtube.com/watch?v=1JT_lTfK69Q>
 
 ### Honorable mentions
 
-- Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had. (if he ever reads this, this will stay xd)
+- Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had.
