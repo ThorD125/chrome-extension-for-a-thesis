@@ -180,3 +180,7 @@ For now, you can visit websites and freely explore their features. If the extens
 ### Honorable mentions
 
 - Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had.
+
+### Licencing
+
+As required by the GNU General Public License v3.0, the source code will be made publicly available on my GitHub. Everyone is permitted to use, distribute, and modify the code, provided that any unmodified or modified versions remain licensed under the same license. Additionally, patents can be obtained only if such patents are licensed for everyone's free use. If any of these conditions are violated, the user's rights are terminated; however, rights can be reinstated upon cessation of the violating behavior. This policy ensures that the software remains free and open, and that its derivatives are bound to the same freedoms and protections.
