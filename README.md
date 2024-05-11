@@ -2,7 +2,7 @@
 
 This repository contains a Chrome extension that facilitates the demonstration and testing of various web security exploits. Follow the setup instructions below to get started.
 
-## TODO'S
+<!-- ## TODO'S
 
 | TODO Item                                                        | Status         |
 | ---------------------------------------------------------------- | -------------- |
@@ -20,7 +20,7 @@ This repository contains a Chrome extension that facilitates the demonstration a
 | Notifing badge icon when exploit worked                          | ✅ Done        |
 | Default search for info on every new site fe .git folder, emails | 🟡 Pending     |
 | Hook defautl methods and send to the popup                       | ❌ Not Working |
-| Mention if there is a content security policy                    | 🟡 Pending     |
+| Mention if there is a content security policy                    | 🟡 Pending     | -->
 
 <!-- (eval, innerHTML, window.location, window.document, window.history, window.event, document.write, insertAdjacentHTML, insertAfter, insertBefore, outerHTML, document.writeln) -->
 
@@ -135,9 +135,21 @@ This is an overview of all the exploits and the status of how far they have been
 
 Generally, here's how the process works: When you visit a webpage and engage in activities like clicking buttons or other interactions, the extension detects specific identifiers or "footprints." If it recognizes any, and there are associated payloads, it sends these to an offscreen document. In this offscreen document, the extension tests the payloads, and then filters the results, which can be adjusted in the settings. Subsequently, the filtered results are stored in the IndexedDB, organized by the tab they originated from. Additionally, if there are any successful results, a counter is displayed on the extension's icon in the taskbar, also tab-specific.
 
-##### - adding more explanations of the other exploits and show pocs
+##### XInclude Attacks
 
-#### -
+XInclude attacks occur when XML parsers on the server-side process input that includes XInclude statements. By default, XInclude attempts to parse included documents as XML. However, attackers can exploit this feature to include non-XML files such as "/etc/passwd" by specifying the parsing method as text. This vulnerability allows unauthorized file access through crafted XML input.
+
+##### XML External Entity (XXE) Injection
+
+XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like "file:///etc/passwd". This type of attack can lead to data exposure or retrieval of sensitive files.
+
+##### Path Traversal
+
+Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like "../../../../../etc/passwd" which can lead to unauthorized access to critical system files.
+
+##### PostMessage Vulnerabilities
+
+The postMessage method is typically used in web applications to enable secure communication between windows or frames from different origins. However, if not properly implemented, it can be vulnerable to attacks. Malicious scripts can exploit postMessage to execute unauthorized actions or access sensitive data. Identifying and mitigating these vulnerabilities requires careful scrutiny of how messages are validated and handled within the application.
 
 ## Setup
 
