@@ -19,7 +19,7 @@ This repository contains a Chrome extension that facilitates the demonstration a
 
 <div class="page-break"></div>
 
-## Licencing
+## Licensing
 
 As required by the GNU General Public License v3.0, the source code will be made publicly available on my GitHub. Everyone is permitted to use, distribute, and modify the code, provided that any unmodified or modified versions remain licensed under the same license. Additionally, patents can be obtained only if such patents are licensed for everyone's free use. If any of these conditions are violated, the user's rights are terminated; however, rights can be reinstated upon cessation of the violating behavior. This policy ensures that the software remains free and open, and that its derivatives are bound to the same freedoms and protections.
 
@@ -31,13 +31,13 @@ This Chrome extension and associated exploits are intended for educational and t
 
 <div class="page-break"></div>
 
-### Inhoudsopgave
+### Table of contents
 
-- Licencing
+- Licensing
 
 - Disclaimer
 
-- Inhoudsopgave
+- Table of contents
 
 - Why I Started Developing a Chrome Extension
 
@@ -45,7 +45,7 @@ This Chrome extension and associated exploits are intended for educational and t
 
 - What are extensions actually
 
-- Development proces
+- Development process
 
   - Key Components of the Extension
 
@@ -94,7 +94,7 @@ Although there were existing extensions like Tampermonkey that could potentially
 ## Why a chrome extension?
 
 The biggest reason: chrome is my default browser.
-Afterwards, when thinking more about it: the chrome browser itself has a marketshare of ~65%, safari ~15% (but i dont have a macbook so this wouldnt be feasable), firefox ~5% and the last ~15% are the other browsers and a lot of those are chromium based.
+Afterwards, when thinking more about it: the chrome browser itself has a market share of ~65%, safari ~15% (but i don't have a MacBook so this wouldn't be feasible), firefox ~5% and the last ~15% are the other browsers and a lot of those are chromium based.
 
 ![alt text](readme/browser_stat.png)
 
@@ -106,13 +106,13 @@ Extensions are JavaScript programs that run either in the background or within t
 
 <div class="page-break"></div>
 
-## Development proces
+## Development process
 
 The first automatic exploit I worked on involved an XML attack, which I learned about from an article. After successfully implementing this exploit, I took the time to modularize my code, breaking it down into separate files and folders for better organization and maintenance. This also enabled me to add a "module" to insert new exploits when they got developed.
 
 ### Key Components of the Extension
 
-Before i start explaining the exploits there are some things we need to get fimiliar with:
+Before i start explaining the exploits there are some things we need to get familiar with:
 
 - **manifest.json**: This file acts as the backbone of a Chrome extension. It configures the extension by declaring its major components and requesting the necessary permissions to function properly.
 - **background.js**: Think of this as the JavaScript that powers the entire browser extension environment. While it cannot interact directly with the content of each tab, it can intercept requests and manage broader extension activities.
@@ -230,7 +230,7 @@ The postMessage method is typically used in web applications to enable secure co
 For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service.
 
 1. Open Google Chrome.
-2. Surf website you may leggaly pentest
+2. Surf website you may legally pentest
 3. After a while, if there are any exploits that succeeded, there will show a badge with the amount of exploits that succeeds
    ![Notification](readme/one_notification.png)
 
@@ -275,4 +275,4 @@ I also used AI to generate images for my presentation.
 
 - Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had.
 - Tobias Chielens: For the interesting internship.
-- Mattias Blomme
+- Matthias Blomme

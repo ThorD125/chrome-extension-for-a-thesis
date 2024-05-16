@@ -42,14 +42,14 @@ Extensions are JavaScript programs that run either in the background or within t
 ### Why I Started Developing a Chrome Extension
 
 <small>
-It all began with thhe documents on LEHO.
+It all began with the documents on leho.
 </small>
 
-note: my frustration at school, specifically with the cumbersome process of viewing documents on LEHO. I had to scroll three times just to see a single page in its entirety.
+note: my frustration at school, specifically with the cumbersome process of viewing documents on leho. I had to scroll three times just to see a single page in its entirety.
 
 ![leho](readme/leho.png)
 
-note: This led me to write a small piece of JavaScript and execute it in the console. Later, I evolved this script into a bookmarklet. However, I still found it inconvenient to open a document and press the bookmark each time. Thus, I embarked on a quest to find a way to automatically execute JavaScript whenever a LEHO document was opened. This journey led me to the world of browser extensions.
+note: This led me to write a small piece of JavaScript and execute it in the console. Later, I evolved this script into a bookmarklet. However, I still found it inconvenient to open a document and press the bookmark each time. Thus, I embarked on a quest to find a way to automatically execute JavaScript whenever a leho document was opened. This journey led me to the world of browser extensions.
 
 note: Although there were existing extensions like Tampermonkey that could potentially meet my needs, they didn't perform exactly as I wanted it. They were either too complex for my simple requirements or failed to function in the desired manner. As a result, I decided to develop my own extension.
 
@@ -58,7 +58,7 @@ note: Although there were existing extensions like Tampermonkey that could poten
 ### Why a chrome extension?
 
 note: The biggest reason: chrome is my default browser.
-note: Afterwards, when thinking more about it: the chrome browser itself has a marketshare of ~65%, safari ~15% (but i dont have a macbook so this wouldnt be feasable), firefox ~5% and the last ~15% are the other browsers and a lot of those are chromium based.
+note: Afterwards, when thinking more about it: the chrome browser itself has a market share of ~65%, safari ~15% (but i don't have a MacBook so this wouldn't be feasible), firefox ~5% and the last ~15% are the other browsers and a lot of those are chromium based.
 
 ![alt text](readme/browser_stat.png)
 
@@ -66,10 +66,10 @@ note: Although initially i tried to develop the extensions for both Firefox and 
 
 ---
 
-### Development proces
+### Development process
 
 <small>
-XML => modulizing => seperating files => organized
+XML => modularizing => separate files => organized
 </small>
 
 note: The first automatic exploit I worked on involved an XML attack, which I learned about from an article. After successfully implementing this exploit, I took the time to modularize my code, breaking it down into separate files and folders for better organization and maintenance. This also enabled me to add a "module" to insert new exploits when they got developed
@@ -82,7 +82,7 @@ note: The first automatic exploit I worked on involved an XML attack, which I le
 Before i start explaining the exploits
 </small>
 
-note: there are some things we need to get fimiliar with:
+note: there are some things we need to get familiar with:
 
 ---
 
@@ -204,7 +204,7 @@ note: There where also tools, that i used, to debug, to understand, to explore t
 ---
 
 <small>
-Burpsuite
+Burp Suite
 </small>
 
 note: For examining and modifying requests, I utilized Burp Suite by Dafydd Stuttard, a tool that lets you intercept, view, and modify the requests sent from your browser. My approach involved intercepting every request using background JavaScript. This method allowed for real-time monitoring and modification of requests before they were completed, offering insights into potential exploits.
@@ -292,7 +292,7 @@ note: The man, the myth, the legend, himself. Someone i look up to, one of the b
 note:For the interesting internship.
 
 <small>
-- Mattias Blomme
+- Matthias Blomme
 </small>
 
 ---
