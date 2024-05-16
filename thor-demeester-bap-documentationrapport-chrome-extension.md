@@ -9,21 +9,73 @@ stylesheet: readme/index.css
 
 This repository contains a Chrome extension that facilitates the demonstration and testing of various web security exploits. Follow the setup instructions below to get started.
 
-## TedTalk
+| Bachelor                       | Toegepaste Informatica |
+| ------------------------------ | ---------------------- |
+| Keuzetraject Afstudeerrichting | Cyber Security         |
+| Academiejaar                   | 2023 - 2024            |
+| Student                        | Thor Demeestere        |
+| Interne begeleider             | Matthias Blomme        |
+| Externe promotor               | Tobias Chielens        |
 
-## Who am i
+<div class="page-break"></div>
 
-I'm Thor, a cybersecurity student at Howest studying Applied Computer Science.
+## Licencing
+
+As required by the GNU General Public License v3.0, the source code will be made publicly available on my GitHub. Everyone is permitted to use, distribute, and modify the code, provided that any unmodified or modified versions remain licensed under the same license. Additionally, patents can be obtained only if such patents are licensed for everyone's free use. If any of these conditions are violated, the user's rights are terminated; however, rights can be reinstated upon cessation of the violating behavior. This policy ensures that the software remains free and open, and that its derivatives are bound to the same freedoms and protections.
+
+<div class="page-break"></div>
 
 ## Disclaimer
 
 This Chrome extension and associated exploits are intended for educational and testing purposes only. Do not use these exploits on any system or website without proper authorization. The developers and contributors of this repository are not responsible for any misuse or damage caused by these exploits. Always ensure that you have appropriate permissions before conducting any security testing.
 
-## Who knows what an extension is???
+<div class="page-break"></div>
 
-## What extensions actually are
+### Inhoudsopgave
 
-Extensions are JavaScript programs that run either in the background or within the same execution environment as a webpage.
+- Licencing
+
+- Disclaimer
+
+- Inhoudsopgave
+
+- Why I Started Developing a Chrome Extension
+
+- Why a chrome extension?
+
+- What are extensions actually
+
+- Development proces
+
+  - Key Components of the Extension
+
+  - Issues
+
+    - Scope
+
+    - Results
+
+- Tools and Methodology
+
+- Chrome Extension Exploit Identifier and Status Table
+
+- Exploiting and Refining
+
+  - XInclude Attacks
+
+  - XML External Entity (XXE) Injection
+
+  - Path Traversal
+
+  - PostMessage Vulnerabilities
+
+- Setup
+
+- How to use
+
+- References
+
+- Honorable mentions
 
 <div class="page-break"></div>
 
@@ -47,6 +99,10 @@ Afterwards, when thinking more about it: the chrome browser itself has a markets
 ![alt text](readme/browser_stat.png)
 
 Although initially i tried to develop the extensions for both Firefox and Chromium-based browsers i found Google's documentation to be superior. Furthermore, after spending hours trying to make it work on Firefox without success, I decided to focus on Chromium-based browsers, which also offered the advantage of wider applicability due to their increasing market share.
+
+## What are extensions actually
+
+Extensions are JavaScript programs that run either in the background or within the same execution environment as a webpage.
 
 <div class="page-break"></div>
 
@@ -89,12 +145,12 @@ Except for content.js, all of these are modules, which allows the use of the imp
 
 Popup and settings pages also have their own scopes and are reloaded each time they are opened, so they don't need to directly share data (except for stored data).
 
-<div class="page-break"></div>
-
 Then, regarding the storage scope:
 
 - While implementing localStorage and cookies is straightforward, they can only be accessed from content.js.
 - We needed storage that could be accessed from each part of the extension. Therefore, I opted for IndexedDB. Although relatively slow, it gets the job done.
+
+<div class="page-break"></div>
 
 #### Results
 
@@ -141,11 +197,11 @@ XInclude attacks occur when XML parsers on the server-side process input that in
 
 XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like "file:///etc/passwd". This type of attack can lead to data exposure or retrieval of sensitive files.
 
-<div class="page-break"></div>
-
 #### Path Traversal
 
 Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like "../../../../../etc/passwd" which can lead to unauthorized access to critical system files.
+
+<div class="page-break"></div>
 
 #### PostMessage Vulnerabilities
 
@@ -171,7 +227,7 @@ The postMessage method is typically used in web applications to enable secure co
 
 ### How to use
 
-For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service. To access the service:
+For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service.
 
 1. Open Google Chrome.
 2. Surf website you may leggaly pentest
@@ -182,6 +238,22 @@ For now, you can visit websites and freely explore their features. If the extens
 
 4. Then you can click on the popup and it will show the exploits with a button to copy the executed exploit
    ![Popup](readme/popup.png)
+
+<div class="page-break"></div>
+
+## AI Prompts
+
+I used various prompts for generating code and explaining how certain pieces of code work:
+
+- Can you explain how this works ...
+
+- Can you write an example for ...
+
+Additionally, I primarily used prompts for improving and rewriting texts:
+
+- Can you proofread this text and correct any errors: ...
+
+I also used AI to generate images for my presentation.
 
 <div class="page-break"></div>
 
@@ -202,9 +274,5 @@ For now, you can visit websites and freely explore their features. If the extens
 ### Honorable mentions
 
 - Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had.
-- Tobias Chielens: For the interesting internship
+- Tobias Chielens: For the interesting internship.
 - Mattias Blomme
-
-### Licencing
-
-As required by the GNU General Public License v3.0, the source code will be made publicly available on my GitHub. Everyone is permitted to use, distribute, and modify the code, provided that any unmodified or modified versions remain licensed under the same license. Additionally, patents can be obtained only if such patents are licensed for everyone's free use. If any of these conditions are violated, the user's rights are terminated; however, rights can be reinstated upon cessation of the violating behavior. This policy ensures that the software remains free and open, and that its derivatives are bound to the same freedoms and protections.
