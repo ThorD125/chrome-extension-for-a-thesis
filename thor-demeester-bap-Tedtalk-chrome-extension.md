@@ -5,10 +5,6 @@ transition: "zoom"
 
 ## Chrome Extension Pentest Toolkit
 
-<small>
-This presentation contains a Chrome extension that facilitates the demonstration and testing of various web security exploits.
-</small>
-
 <img src="./powerpoint/start.png" alt="start" class="r-stretch">
 
 ---
@@ -16,16 +12,28 @@ This presentation contains a Chrome extension that facilitates the demonstration
 ### Who am i
 
 <small>
-I'm Thor, a cybersecurity student at Howest studying Applied Computer Science.
+Ik ben Thor, een student Cyber Security aan Howest.
 </small>
+
+note: en in mijn vrije tijd probeer ik te pentesten
 
 ---
 
-### Disclaimer
+### Automatiseren van pentesten
 
-<small>
-This Chrome extension and associated exploits are intended for educational and testing purposes only. Do not use these exploits on any system or website without proper authorization. I'm not responsible for any misuse or damage caused by these exploits. And always ensure that you have appropriate permissions before conducting any security testing.
-</small>
+<small>Kan ik dit niet automatiseren</small>
+
+---
+
+##### General info gathering
+
+note: general info krijgen
+
+---
+
+##### Path Traversal
+
+note: Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like "../../../../../etc/passwd" which can lead to unauthorized access to critical system files
 
 ---
 
@@ -205,50 +213,14 @@ note:Generally, here's how the process works: When you visit a webpage and engag
 
 ---
 
-##### XInclude Attacks
-
-note: attacks occur when XML parsers on the server-side process input that includes XInclude statements. By default, XInclude attempts to parse included documents as XML. However, attackers can exploit this feature to include non-XML files such as "/etc/passwd" by specifying the parsing method as text. This vulnerability allows unauthorized file access through crafted XML input
-
----
-
-##### XML External Entity (XXE) Injection
-
-note: XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like "file:///etc/passwd". This type of attack can lead to data exposure or retrieval of sensitive files.
-
----
-
-##### Path Traversal
-
-note: Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like "../../../../../etc/passwd" which can lead to unauthorized access to critical system files
-
----
-
-##### PostMessage Identifying
-
-note: The postMessage method is typically used in web applications to enable secure communication between windows or frames from different origins. However, if not properly implemented, it can be vulnerable to attacks. Malicious scripts can exploit postMessage to execute unauthorized actions or access sensitive data. Identifying and mitigating these vulnerabilities requires careful scrutiny of how messages are validated and handled within the application
-
----
-
-#### Example demo video
-
-note: For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service.
-
----
-
 #### Honorable mentions
 
 <small>
 - Koen Koreman
 </small> <br>
-
-note: The man, the myth, the legend, himself. Someone i look up to, one of the best docents i've ever had.
-
 <small>
 - Tobias Chielens
 </small> <br>
-
-note:For the interesting internship.
-
 <small>
 - Matthias Blomme
 </small>

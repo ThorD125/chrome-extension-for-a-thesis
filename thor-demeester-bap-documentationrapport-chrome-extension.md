@@ -1,11 +1,14 @@
 ---
 pdf_options:
   format: a4
-  margin: 0
-stylesheet: readme/index.css
+  margin: 18mm
+  headerTemplate: "<div style=\"text-align: center;width: 297mm;font-size: 8px\"><span style=\"\">Thor Demeestere - 2023-2024 - Chrome Extension Pentest Framework</span></span></div>"
+  footerTemplate: "<div style=\"text-align: center;width: 297mm;font-size: 8px\"><span style=\"\"><span class=\"pageNumber\"></span> of <span class=\"totalPages\"></span></span></div>"
+
+stylesheet: ./readme/index.css
 ---
 
-# Chrome Extension Pentest Toolkit
+# Chrome Extension Pentest Framework
 
 This repository contains a Chrome extension that facilitates the demonstration and testing of various web security exploits. Follow the setup instructions below to get started.
 
@@ -19,9 +22,9 @@ This repository contains a Chrome extension that facilitates the demonstration a
 
 <div class="page-break"></div>
 
-## Licensing
+## Availability for consultation
 
-As required by the GNU General Public License v3.0, the source code will be made publicly available on my GitHub. Everyone is permitted to use, distribute, and modify the code, provided that any unmodified or modified versions remain licensed under the same license. Additionally, patents can be obtained only if such patents are licensed for everyone's free use. If any of these conditions are violated, the user's rights are terminated; however, rights can be reinstated upon cessation of the violating behavior. This policy ensures that the software remains free and open, and that its derivatives are bound to the same freedoms and protections.
+The author(s) gives (give) permission to make this documentation report (part of the bachelor dissertation) available for consultation and to copy parts of this report for personal use. In all cases of other use, the copyright terms have to be respected, in particular with regard to the obligation to state explicitly the source when quoting results from this report.
 
 <div class="page-break"></div>
 
@@ -67,7 +70,7 @@ This Chrome extension and associated exploits are intended for educational and t
 
   - Path Traversal
 
-  - PostMessage Vulnerabilities
+  - Postmessage Vulnerabilities
 
 - Setup
 
@@ -133,7 +136,11 @@ During the development process, I encountered multiple challenges related to the
 
 ![complicated scheme of the scope](readme/scope.webp)
 
+<div class="page-break"></div>
+
 As depicted, the structure is complex, but I will simplify it:
+
+![simplified scheme of the scope](powerpoint/parts_schema.png)
 
 Firstly, regarding JavaScript scopes:
 
@@ -172,40 +179,51 @@ Each tool played a critical role in enhancing my capability to develop, troubles
 
 <div class="page-break"></div>
 
-### Chrome Extension Exploit Identifier and Status Table
-
-This is an overview of all the exploits and the status of how far they have been implemented yet and also links to info about the exploits.
-
-| Exploit Identifying name in project              | Exploit Link                                                                                                                                                                                                       | Description                                                                                                                         | Implementation status |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| post_formbody_attack                             | [Exploit Link](https://portswigger.net/web-security/xxe/lab-xinclude-attack)                                                                                                                                       | This exploit demonstrates an XXE (XML External Entity) attack by exploiting vulnerabilities in the `post_formbody_attack` scenario. | ✅                    |
-| post_xmlbody_attack                              | [Exploit Link](https://portswigger.net/web-security/xxe/lab-exploiting-xxe-to-retrieve-files)                                                                                                                      | This exploit showcases the exploitation of XXE to retrieve files by targeting the `post_xmlbody_attack` scenario.                   | ✅                    |
-| blind_xxe_with_data_retrieval_via_error_messages | [Exploit Link](https://portswigger.net/web-security/xxe/blind/lab-xxe-with-data-retrieval-via-error-messages)                                                                                                      | This exploit aims to demonstrate blind XXE with data retrieval via error messages.                                                  | 🟡 Pending            |
-| get_filepath                                     | [Exploit Link](https://portswigger.net/web-security/file-path-traversal)                                                                                                                                           | This exploit demonstrates file path traversal vulnerabilities by targeting the get_filepath scenario.                               | ✅                    |
-| postmessage_identifying                          | [Info Link1](https://portswigger.net/web-security/dom-based/controlling-the-web-message-source/lab-dom-xss-using-web-messages);[Info Link2](https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205) | This identifies possible vulnerabilities through the exploitation of the postMessage method.                                        | ✅                    |
-| General Info                                     |                                                                                                                                                                                                                    | Site URL: example.com; IP Address: 192.0.2.1; Full URL: <https://example.com>; includes git folder                                  | 🟡 Pending            |
-
 ### Exploiting and Refining
 
-Generally, here's how the process works: When you visit a webpage and engage in activities like clicking buttons or other interactions, the extension detects specific identifiers or "footprints." If it recognizes any, and there are associated payloads, it sends these to an offscreen document. In this offscreen document, the extension tests the payloads, and then filters the results, which can be adjusted in the settings. Subsequently, the filtered results are stored in the IndexedDB, organized by the tab they originated from. Additionally, if there are any successful results, a counter is displayed on the extension's icon in the taskbar, also tab-specific.
+The process unfolds as follows: Upon visiting a webpage and engaging in actions such as clicking buttons or other forms of interaction, the browser extension identifies specific markers or "footprints." If any recognized markers are present, along with associated payloads, these are dispatched to an offscreen document. Within this offscreen document, the extension executes the payloads and subsequently filters the results according to adjustable settings. The filtered results are then stored in the IndexedDB, organized by the originating tab. Additionally, if any successful results are identified, a counter is updated and displayed on the extension's icon in the taskbar, with the count being tab-specific.
 
-#### XInclude Attacks
-
-XInclude attacks occur when XML parsers on the server-side process input that includes XInclude statements. By default, XInclude attempts to parse included documents as XML. However, attackers can exploit this feature to include non-XML files such as "/etc/passwd" by specifying the parsing method as text. This vulnerability allows unauthorized file access through crafted XML input.
-
-#### XML External Entity (XXE) Injection
-
-XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like "file:///etc/passwd". This type of attack can lead to data exposure or retrieval of sensitive files.
+In the subsequent sections, I will delve deeper into some automated exploits and provide a preview of the results. For legal reasons, most of the screenshots presented are sourced from the PortSwigger Web Security Academy.
 
 #### Path Traversal
 
 Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like "../../../../../etc/passwd" which can lead to unauthorized access to critical system files.
 
+As seen in the image below, simply loading the page resulted in the extension identifying and attempting at least some path traversal attacks. This highlights the severity and ease with which such vulnerabilities can be exploited if proper input validation and sanitization are not implemented.
+
+![Path Traversal](./powerpoint/filetraversal_hard.png)
+
 <div class="page-break"></div>
 
-#### PostMessage Vulnerabilities
+#### XML External Entity (XXE) Injection
 
-The postMessage method is typically used in web applications to enable secure communication between windows or frames from different origins. However, if not properly implemented, it can be vulnerable to attacks. Malicious scripts can exploit postMessage to execute unauthorized actions or access sensitive data. Identifying and mitigating these vulnerabilities requires careful scrutiny of how messages are validated and handled within the application.
+XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like "file:///etc/passwd". This type of attack can lead to data exposure or retrieval of sensitive files.
+
+As you can see in the image below, after visiting and clicking around on the page, the extension identified one XXE vulnerability. This underscores the risk of XXE attacks in web applications that process XML input without proper validation and sanitization.
+
+![XML External Entity (XXE) Injection](./powerpoint/xxe_external_entitys_results.png)
+
+<div class="page-break"></div>
+
+#### Postmessage Vulnerabilities
+
+The postmessage method is typically used in web applications to enable secure communication between windows or frames from different origins. However, if not properly implemented, it can be vulnerable to attacks. Malicious scripts can exploit postmessage to execute unauthorized actions or access sensitive data. Identifying and mitigating these vulnerabilities requires careful scrutiny of how messages are validated and handled within the application.
+
+As illustrated on the image below, a postmessage instance is detected, revealing the specific URL where the script with the postmessage is located. This visual representation underscores the importance of thoroughly inspecting the origins and destinations of messages to ensure they are from trusted sources and properly handled to prevent security breaches.
+
+![postmessage Vulnerabilitie identifying](./powerpoint/postmessage_identify.jpg)
+
+<div class="page-break"></div>
+
+#### XInclude Attacks
+
+XInclude attacks occur when XML parsers on the server-side process input that includes XInclude statements. By default, XInclude attempts to parse included documents as XML. However, attackers can exploit this feature to include non-XML files such as "/etc/passwd" by specifying the parsing method as text. This vulnerability allows unauthorized file access through crafted XML input.
+
+As you can see in the picture below, after clicking around a bit, one XInclude attack was identified. This image demonstrates the process and highlights the potential risk of XInclude vulnerabilities in XML parsing systems.
+
+![XInclude Attacks](./powerpoint/x_include.png)
+
+<div class="page-break"></div>
 
 ## Setup
 
@@ -223,8 +241,6 @@ The postMessage method is typically used in web applications to enable secure co
 
 7. Navigate to a webpage that you wish to test for vulnerabilities.
 
-<div class="page-break"></div>
-
 ### How to use
 
 For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension's service.
@@ -233,9 +249,6 @@ For now, you can visit websites and freely explore their features. If the extens
 2. Surf website you may legally pentest
 3. After a while, if there are any exploits that succeeded, there will show a badge with the amount of exploits that succeeds
    ![Notification](readme/one_notification.png)
-
-<div class="page-break"></div>
-
 4. Then you can click on the popup and it will show the exploits with a button to copy the executed exploit
    ![Popup](readme/popup.png)
 
@@ -268,7 +281,7 @@ I also used AI to generate images for my presentation.
 - “People of Twitter.” <https://twitter.com/home>
 - “Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB>
 - “Extensions / reference,” Chrome for Developers. Available: <https://developer.chrome.com/docs/extensions/reference>
-- C. Rai, “Exploiting PostMessage() - Chirag Rai - Medium,” Medium, Jan. 06, 2022. Available: <https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205>
+- C. Rai, “Exploiting postmessage() - Chirag Rai - Medium,” Medium, Jan. 06, 2022. Available: <https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205>
 - DEFCONConference, “DEF CON 31 - Infinite Money Glitch - Hacking Transit Cards - Bertocchi, Campbell, Gibson, Harris,” YouTube. Aug. 23, 2023. Available: <https://www.youtube.com/watch?v=1JT_lTfK69Q>
 
 ### Honorable mentions
