@@ -3,21 +3,19 @@ theme: "white"
 transition: "zoom"
 ---
 
-
 # Chrome Extension Webpentesting Framework
 
-<img src="powerpoint/start.png" alt="start" class="r-stretch">
+<img src="powerpoint/start.png" alt="start" >
 
 ---
 
 ## Wie ben ik
 
 <small>
-Ik ben Thor, een student Cyber Security aan Howest.
+Ik ben Thor, een student Cyber Security.
 </small>
 
-note: en in mijn vrije tijd doe ik mee aan ctf's en pentest ik
-
+note: als er vragen zijn onderbreek me gerust
 ---
 
 ## Idee
@@ -35,20 +33,21 @@ note: dus wat als ik zelf een extension maak die meerdere exploits automatisch u
 
 note: use case
 
-Voorbeeld van use cases op portswigger labs
-![postmessage Vulnerabilitie identifying](./powerpoint/postmessage_identify.jpg)
-
---
-
-![Path Traversal](./powerpoint/filetraversal_hard.png)
-
---
-
 ![XML External Entity (XXE) Injection](./powerpoint/xxe_external_entitys_results.png)
 
---
+---
 
-![XInclude Attacks](./powerpoint/x_include.png)
+<img alt="Popup" src="readme/popup.png">
+
+---
+
+## Wie weet wat extensies zijn?
+
+---
+
+## Wie weet wat extensies zijn?
+
+<small>Dit zijn javascript scripts die uw browser uitbreiden</small>
 
 ---
 
@@ -69,16 +68,6 @@ note: hierna hing ik opzoek naar hoe ik dit automatisch kon doen en toen kwam ik
 
 ---
 
-## Wie weet wat extensies zijn?
-
----
-
-## Wie weet wat extensies zijn?
-
-<small>Dit zijn javascript scripts die uw browser uitbreiden</small>
-
----
-
 ## Hoe zitten extensies in elkaar
 
 <img alt="1diagram met alle onderdelen" class="r-stretch" src="powerpoint/parts_schema.png">
@@ -91,11 +80,15 @@ note: probleem met storage
 
 ## XML
 
-note: eerst maakte ik een xml inclusion attack
+<img alt="xml example" class="r-stretch" src="powerpoint/xml_example.png">
+
+note: eerst maakte ik een xml inclusion attack 
 
 ---
 
 ## Modularize
+
+<img alt="one to many" class="r-stretch" src="powerpoint/one to many.webp">
 
 note: hierna modularizeerde ik mijn code, tot nu toe had ik alles en 1 bestand
 note: maar dit was niet haalbaar om naar meerdere exploits uit te breiden
@@ -120,6 +113,10 @@ note: eerst developte ik zo:
 
 note: en hierna maakte ik het popup scherm
 note: zodat je gemakkelijk de resultaten kan zien
+
+---
+
+### QUESTIONS?
 
 ---
 

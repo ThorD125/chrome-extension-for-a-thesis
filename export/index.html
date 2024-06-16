@@ -176,9 +176,279 @@
       
   
     <section >
-      <h2 style="font-size: 96p">Chrome Extension Webpentesting Framework</h2>
-<p><small>Thor Demeestere 2023-2024</small></p>
-<img src="powerpoint/start.png" alt="start" class="r-fit">
+      <h1><a id="user-content-chrome-extension-webpentesting-framework" class="anchor" href="#chrome-extension-webpentesting-framework" aria-hidden="true"></a>Chrome Extension Webpentesting Framework</h1>
+<p>This repository contains a Chrome extension that facilitates the demonstration and testing of various web security exploits. Follow the setup instructions below to get started.</p>
+<table>
+<thead>
+<tr>
+<th>Bachelor</th>
+<th>Toegepaste Informatica</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Keuzetraject Afstudeerrichting</td>
+<td>Cyber Security</td>
+</tr>
+<tr>
+<td>Academiejaar</td>
+<td>2023 - 2024</td>
+</tr>
+<tr>
+<td>Student</td>
+<td>Thor Demeestere</td>
+</tr>
+<tr>
+<td>Interne begeleider</td>
+<td>Matthias Blomme</td>
+</tr>
+<tr>
+<td>Externe promotor</td>
+<td>Tobias Chielens</td>
+</tr>
+</tbody>
+</table>
+<div class="page-break"></div>
+<h2><a id="user-content-availability-for-consultation" class="anchor" href="#availability-for-consultation" aria-hidden="true"></a>Availability for consultation</h2>
+<p>The author(s) gives (give) permission to make this documentation report (part of the bachelor dissertation) available for consultation and to copy parts of this report for personal use. In all cases of other use, the copyright terms have to be respected, in particular with regard to the obligation to state explicitly the source when quoting results from this report.</p>
+<div class="page-break"></div>
+<h2><a id="user-content-disclaimer" class="anchor" href="#disclaimer" aria-hidden="true"></a>Disclaimer</h2>
+<p>This Chrome extension and associated exploits are intended for educational and testing purposes only. Do not use these exploits on any system or website without proper authorization. The developers and contributors of this repository are not responsible for any misuse or damage caused by these exploits. Always ensure that you have appropriate permissions before conducting any security testing.</p>
+<div class="page-break"></div>
+<h3><a id="user-content-table-of-contents" class="anchor" href="#table-of-contents" aria-hidden="true"></a>Table of contents</h3>
+<ul>
+<li>
+<p>Licensing</p>
+</li>
+<li>
+<p>Disclaimer</p>
+</li>
+<li>
+<p>Table of contents</p>
+</li>
+<li>
+<p>Why I Started Developing a Chrome Extension</p>
+</li>
+<li>
+<p>Why a chrome extension?</p>
+</li>
+<li>
+<p>What are extensions actually</p>
+</li>
+<li>
+<p>Development process</p>
+<ul>
+<li>
+<p>Key Components of the Extension</p>
+</li>
+<li>
+<p>Issues</p>
+<ul>
+<li>
+<p>Scope</p>
+</li>
+<li>
+<p>Results</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>Tools and Methodology</p>
+</li>
+<li>
+<p>Chrome Extension Exploit Identifier and Status Table</p>
+</li>
+<li>
+<p>Exploiting and Refining</p>
+<ul>
+<li>
+<p>XInclude Attacks</p>
+</li>
+<li>
+<p>XML External Entity (XXE) Injection</p>
+</li>
+<li>
+<p>Path Traversal</p>
+</li>
+<li>
+<p>Postmessage Vulnerabilities</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Setup</p>
+</li>
+<li>
+<p>How to use</p>
+</li>
+<li>
+<p>References</p>
+</li>
+<li>
+<p>Honorable mentions</p>
+</li>
+</ul>
+<div class="page-break"></div>
+<h2><a id="user-content-why-i-started-developing-a-chrome-extension" class="anchor" href="#why-i-started-developing-a-chrome-extension" aria-hidden="true"></a>Why I Started Developing a Chrome Extension</h2>
+<p>It all began with my frustration at school, specifically with the cumbersome process of viewing documents on LEHO. I had to scroll three times just to see a single page in its entirety.</p>
+<p><img src="readme/leho.png" alt="leho"></p>
+<p>This led me to write a small piece of JavaScript and execute it in the console. Later, I evolved this script into a bookmarklet. However, I still found it inconvenient to open a document and press the bookmark each time. Thus, I embarked on a quest to find a way to automatically execute JavaScript whenever a LEHO document was opened. This journey led me to the world of browser extensions.</p>
+<p>Although there were existing extensions like Tampermonkey that could potentially meet my needs, they didn’t perform exactly as I wanted it. They were either too complex for my simple requirements or failed to function in the desired manner. As a result, I decided to develop my own extension.</p>
+<div class="page-break"></div>
+<h2><a id="user-content-why-a-chrome-extension" class="anchor" href="#why-a-chrome-extension" aria-hidden="true"></a>Why a chrome extension?</h2>
+<p>The biggest reason: chrome is my default browser.
+Afterwards, when thinking more about it: the chrome browser itself has a market share of ~65%, safari ~15% (but i don’t have a MacBook so this wouldn’t be feasible), firefox ~5% and the last ~15% are the other browsers and a lot of those are chromium based.</p>
+<p><img src="readme/browser_stat.png" alt="alt text"></p>
+<p>Although initially i tried to develop the extensions for both Firefox and Chromium-based browsers i found Google’s documentation to be superior. Furthermore, after spending hours trying to make it work on Firefox without success, I decided to focus on Chromium-based browsers, which also offered the advantage of wider applicability due to their increasing market share.</p>
+<h2><a id="user-content-what-are-extensions-actually" class="anchor" href="#what-are-extensions-actually" aria-hidden="true"></a>What are extensions actually</h2>
+<p>Extensions are JavaScript programs that run either in the background or within the same execution environment as a webpage.</p>
+<div class="page-break"></div>
+<h2><a id="user-content-development-process" class="anchor" href="#development-process" aria-hidden="true"></a>Development process</h2>
+<p>The first automatic exploit I worked on involved an XML attack, which I learned about from an article. After successfully implementing this exploit, I took the time to modularize my code, breaking it down into separate files and folders for better organization and maintenance. This also enabled me to add a “module” to insert new exploits when they got developed.</p>
+<h3><a id="user-content-key-components-of-the-extension" class="anchor" href="#key-components-of-the-extension" aria-hidden="true"></a>Key Components of the Extension</h3>
+<p>Before i start explaining the exploits there are some things we need to get familiar with:</p>
+<ul>
+<li><strong>manifest.json</strong>: This file acts as the backbone of a Chrome extension. It configures the extension by declaring its major components and requesting the necessary permissions to function properly.</li>
+<li><strong>background.js</strong>: Think of this as the JavaScript that powers the entire browser extension environment. While it cannot interact directly with the content of each tab, it can intercept requests and manage broader extension activities.</li>
+<li><strong>offscreen.html</strong>: This HTML file exists within the same operational context as a browser tab but remains invisible to the user. It serves as a hidden layer where certain extension processes can run in the background.</li>
+<li><strong>listener.js (previously offscreen.js)</strong>: Associated with offscreen.html, this JavaScript file is dedicated to monitoring specific events or “attacks” within the extension’s hidden realm. It is where we listen for and respond to various triggers.</li>
+<li><strong>content.js</strong>: This script runs in the context of each browser tab, directly interacting with the web content. It is isolated to the tab it operates in, ensuring that its actions are tab-specific and do not interfere with the broader browser or other tabs.</li>
+<li><strong>popup.html/js</strong>: This is the interface you see when you click the extension’s icon, where the results for the current tab are displayed.</li>
+<li><strong>settings.html/js (previously options.html/js)</strong>: In this section, we configure settings, primarily filters for results and URLs to ignore during a penetration test.
+<img src="readme/options.png" alt="Options"></li>
+</ul>
+<div class="page-break"></div>
+<h3><a id="user-content-issues" class="anchor" href="#issues" aria-hidden="true"></a>Issues</h3>
+<h4><a id="user-content-scope" class="anchor" href="#scope" aria-hidden="true"></a>Scope</h4>
+<p>During the development process, I encountered multiple challenges related to the scope of JavaScript variables and methods, as well as storage.</p>
+<p><img src="readme/scope.webp" alt="complicated scheme of the scope"></p>
+<div class="page-break"></div>
+<p>As depicted, the structure is complex, but I will simplify it:</p>
+<p><img src="powerpoint/parts_schema.png" alt="simplified scheme of the scope"></p>
+<p>Firstly, regarding JavaScript scopes:</p>
+<ul>
+<li>You have a browser which is interacted with via background.js. It contains tabs that are managed through content.js.</li>
+<li>Each of these components has its own scope and communicates with others via post messages.</li>
+<li>Additionally, an offscreen HTML page is started up, loaded from the background, and has its own scope.</li>
+</ul>
+<p>Except for content.js, all of these are modules, which allows the use of the import method. This is useful for separating different functions into different files. However, since content.js is not a module, I had to duplicate some methods that I wanted to use in my content scripts.</p>
+<p>Popup and settings pages also have their own scopes and are reloaded each time they are opened, so they don’t need to directly share data (except for stored data).</p>
+<p>Then, regarding the storage scope:</p>
+<ul>
+<li>While implementing localStorage and cookies is straightforward, they can only be accessed from content.js.</li>
+<li>We needed storage that could be accessed from each part of the extension. Therefore, I opted for IndexedDB. Although relatively slow, it gets the job done.</li>
+</ul>
+<div class="page-break"></div>
+<h4><a id="user-content-results" class="anchor" href="#results" aria-hidden="true"></a>Results</h4>
+<p>Initially, I always opened the extension’s development console and logged each response. While this is easy and fast for checking functionality during development, it is not suitable for the final product. Therefore, I explored methods to save the results and subsequently needed to determine how to display them. In the end, I decided to store them in IndexedDB and display the results of the current page when clicking the extension’s icon.</p>
+<h3><a id="user-content-tools-and-methodology" class="anchor" href="#tools-and-methodology" aria-hidden="true"></a>Tools and Methodology</h3>
+<p>There where also tools, that i used, to debug, to understand, to explore the internet:</p>
+<p>For examining and modifying requests, I utilized Burp Suite by Dafydd Stuttard, a tool that lets you intercept, view, and modify the requests sent from your browser. My approach involved intercepting every request using background JavaScript. This method allowed for real-time monitoring and modification of requests before they were completed, offering insights into potential exploits.</p>
+<p>Chrome DevTools: This integrated set of tools is built directly into the Google Chrome browser, allowing developers to edit pages on-the-fly and diagnose problems quickly, which helps in understanding the detailed workings of web applications. I used Chrome DevTools extensively for inspecting HTML, CSS, and JavaScript, observing network activity, and managing browser storage among other things.</p>
+<p>Google Documentation: Google’s comprehensive documentation resources were invaluable for understanding best practices and how to effectively use various APIs and services. I frequently referred to Google’s developer documentation to ensure that I was using the most up-to-date and efficient methods available.</p>
+<p>ChatGPT: For synthesizing information, explaining complex concepts in simpler terms, spellchecking, and generating images, I used ChatGPT. It was particularly helpful not only for quick summaries and clarifications on technical topics but also for creating visual content that aided in illustrating points and enhancing presentations. The ability to generate images helped in visualizing concepts that were otherwise abstract and difficult to convey through text alone.</p>
+<p>Each tool played a critical role in enhancing my capability to develop, troubleshoot, and optimize my applications efficiently.</p>
+<div class="page-break"></div>
+<h3><a id="user-content-exploiting-and-refining" class="anchor" href="#exploiting-and-refining" aria-hidden="true"></a>Exploiting and Refining</h3>
+<p>The process unfolds as follows: Upon visiting a webpage and engaging in actions such as clicking buttons or other forms of interaction, the browser extension identifies specific markers or “footprints.” If any recognized markers are present, along with associated payloads, these are dispatched to an offscreen document. Within this offscreen document, the extension executes the payloads and subsequently filters the results according to adjustable settings. The filtered results are then stored in the IndexedDB, organized by the originating tab. Additionally, if any successful results are identified, a counter is updated and displayed on the extension’s icon in the taskbar, with the count being tab-specific.</p>
+<p>In the subsequent sections, I will delve deeper into some automated exploits and provide a preview of the results. For legal reasons, most of the screenshots presented are sourced from the PortSwigger Web Security Academy.</p>
+<h4><a id="user-content-path-traversal" class="anchor" href="#path-traversal" aria-hidden="true"></a>Path Traversal</h4>
+<p>Path traversal vulnerabilities occur when input values (such as file paths) provided by a user are not properly sanitized, allowing attackers to navigate the server’s directory structure. An example is input like “…/…/…/…/…/etc/passwd” which can lead to unauthorized access to critical system files.</p>
+<p>As seen in the image below, simply loading the page resulted in the extension identifying and attempting at least some path traversal attacks. This highlights the severity and ease with which such vulnerabilities can be exploited if proper input validation and sanitization are not implemented.</p>
+<p><img src="./powerpoint/filetraversal_hard.png" alt="Path Traversal"></p>
+<div class="page-break"></div>
+<h4><a id="user-content-xml-external-entity-xxe-injection" class="anchor" href="#xml-external-entity-xxe-injection" aria-hidden="true"></a>XML External Entity (XXE) Injection</h4>
+<p>XXE injection involves exploiting the feature in XML where external entities can be defined and used within the document. When XML input containing external entity declarations is processed, it can be manipulated to include data from system files like “file:///etc/passwd”. This type of attack can lead to data exposure or retrieval of sensitive files.</p>
+<p>As you can see in the image below, after visiting and clicking around on the page, the extension identified one XXE vulnerability. This underscores the risk of XXE attacks in web applications that process XML input without proper validation and sanitization.</p>
+<p><img src="./powerpoint/xxe_external_entitys_results.png" alt="XML External Entity (XXE) Injection"></p>
+<div class="page-break"></div>
+<h4><a id="user-content-postmessage-vulnerabilities" class="anchor" href="#postmessage-vulnerabilities" aria-hidden="true"></a>Postmessage Vulnerabilities</h4>
+<p>The postmessage method is typically used in web applications to enable secure communication between windows or frames from different origins. However, if not properly implemented, it can be vulnerable to attacks. Malicious scripts can exploit postmessage to execute unauthorized actions or access sensitive data. Identifying and mitigating these vulnerabilities requires careful scrutiny of how messages are validated and handled within the application.</p>
+<p>As illustrated on the image below, a postmessage instance is detected, revealing the specific URL where the script with the postmessage is located. This visual representation underscores the importance of thoroughly inspecting the origins and destinations of messages to ensure they are from trusted sources and properly handled to prevent security breaches.</p>
+<p><img src="./powerpoint/postmessage_identify.jpg" alt="postmessage Vulnerability identifying"></p>
+<div class="page-break"></div>
+<h4><a id="user-content-xinclude-attacks" class="anchor" href="#xinclude-attacks" aria-hidden="true"></a>XInclude Attacks</h4>
+<p>XInclude attacks occur when XML parsers on the server-side process input that includes XInclude statements. By default, XInclude attempts to parse included documents as XML. However, attackers can exploit this feature to include non-XML files such as “/etc/passwd” by specifying the parsing method as text. This vulnerability allows unauthorized file access through crafted XML input.</p>
+<p>As you can see in the picture below, after clicking around a bit, one XInclude attack was identified. This image demonstrates the process and highlights the potential risk of XInclude vulnerabilities in XML parsing systems.</p>
+<p><img src="./powerpoint/x_include.png" alt="XInclude Attacks"></p>
+<div class="page-break"></div>
+<h2><a id="user-content-ai-prompts" class="anchor" href="#ai-prompts" aria-hidden="true"></a>AI Prompts</h2>
+<p>I used various prompts for generating code and explaining how certain pieces of code work:</p>
+<ul>
+<li>
+<p>Can you explain how this works …</p>
+</li>
+<li>
+<p>Can you write an example for …</p>
+</li>
+</ul>
+<p>Additionally, I primarily used prompts for improving and rewriting texts:</p>
+<ul>
+<li>Can you proofread this text and correct any errors: …</li>
+</ul>
+<p>I also used AI to generate images for my presentation.</p>
+<div class="page-break"></div>
+<h2><a id="user-content-references" class="anchor" href="#references" aria-hidden="true"></a>References</h2>
+<ul>
+<li>“All labs | Web Security Academy.” <a href="https://portswigger.net/web-security/all-labs">https://portswigger.net/web-security/all-labs</a></li>
+<li>“API reference,” Chrome for Developers. <a href="https://developer.chrome.com/docs/extensions/reference/api">https://developer.chrome.com/docs/extensions/reference/api</a></li>
+<li>“Chat GPT.” <a href="https://chat.openai.com/auth/login">https://chat.openai.com/auth/login</a></li>
+<li>A. Leybourne, “Chrome Extension Icon Generator.” <a href="https://alexleybourne.github.io/chrome-extension-icon-generator/">https://alexleybourne.github.io/chrome-extension-icon-generator/</a></li>
+<li>“Extensions / Manifest v3 | Chrome for Developers,” Chrome for Developers. <a href="https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3">https://developer.chrome.com/docs/extensions/develop/migrate/what-is-mv3</a></li>
+<li>Scribbr, “Free Citation Generator | APA, MLA, Chicago | Scribbr,” Scribbr, Mar. 21, 2024. <a href="https://www.scribbr.com/citation/generator">https://www.scribbr.com/citation/generator</a></li>
+<li>“People of Twitter.” <a href="https://twitter.com/home">https://twitter.com/home</a></li>
+<li>“Using IndexedDB - Web APIs | MDN,” MDN Web Docs, Jan. 30, 2024. <a href="https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB">https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB</a></li>
+<li>“Extensions / reference,” Chrome for Developers. Available: <a href="https://developer.chrome.com/docs/extensions/reference">https://developer.chrome.com/docs/extensions/reference</a></li>
+<li>C. Rai, “Exploiting postmessage() - Chirag Rai - Medium,” Medium, Jan. 06, 2022. Available: <a href="https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205">https://medium.com/@chiragrai3666/exploiting-postmessage-e2b01349c205</a></li>
+<li>DEFCONConference, “DEF CON 31 - Infinite Money Glitch - Hacking Transit Cards - Bertocchi, Campbell, Gibson, Harris,” YouTube. Aug. 23, 2023. Available: <a href="https://www.youtube.com/watch?v=1JT_lTfK69Q">https://www.youtube.com/watch?v=1JT_lTfK69Q</a></li>
+</ul>
+<h3><a id="user-content-honorable-mentions" class="anchor" href="#honorable-mentions" aria-hidden="true"></a>Honorable mentions</h3>
+<ul>
+<li>Koen Koreman aka Koenk: The man, the myth, the legend, himself. Someone i look up to, one of the best docents I’ve ever had.</li>
+<li>Tobias Chielens: For the interesting internship.</li>
+<li>Matthias Blomme</li>
+</ul>
+<div class="page-break"></div>
+<h2><a id="user-content-appendices" class="anchor" href="#appendices" aria-hidden="true"></a>Appendices</h2>
+<h3><a id="user-content-code" class="anchor" href="#code" aria-hidden="true"></a>Code</h3>
+<p>My code can be found on my github: <code>https://github.com/ThorD125/chrome-extension-for-a-thesis</code> until 18/06/2024.</p>
+<h3><a id="user-content-setup" class="anchor" href="#setup" aria-hidden="true"></a>Setup</h3>
+<ol>
+<li>
+<p>Clone <code>https://github.com/ThorD125/chrome-extension-for-a-thesis</code> to a known location on your system, for example, <code>~/chrome-extension</code>.</p>
+</li>
+<li>
+<p>Open Google Chrome.</p>
+</li>
+<li>
+<p>Navigate to <code>chrome://extensions/</code> in the address bar.</p>
+</li>
+<li>
+<p>Enable developer mode by toggling the switch located at the top right corner.</p>
+</li>
+<li>
+<p>Click on the “Load unpacked” button and select the folder where you cloned this repository (<code>~/chrome-extension</code>).</p>
+</li>
+<li>
+<p>The extension should now be loaded into Chrome.</p>
+</li>
+<li>
+<p>Navigate to a webpage that you wish to test for vulnerabilities.</p>
+</li>
+</ol>
+<div class="page-break"></div>
+<h3><a id="user-content-how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"></a>How to use</h3>
+<p>For now, you can visit websites and freely explore their features. If the extension detects a request that might be exploitable, it will automatically attempt certain actions. You can view the results in the extension’s service.</p>
+<ol>
+<li>Open Google Chrome.</li>
+<li>Surf website you may legally pentest</li>
+<li>After a while, if there are any exploits that succeeded, there will show a badge with the amount of exploits that succeeds
+<img src="readme/one_notification.png" alt="Notification"></li>
+<li>Then you can click on the popup and it will show the exploits with a button to copy the executed exploit
+<img src="readme/popup.png" alt="Popup"></li>
+</ol>
 
     </section>
   
